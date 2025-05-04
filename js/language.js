@@ -9,6 +9,7 @@ const translations = {
         'testimonials': 'Testimonials',
         'language': 'فارسی',
         'lang_code': 'EN',
+        'lang_code_alt': 'فا',
 
         // Hero Section
         'ui_designer_frontend_developer': 'UI Designer & <br>Frontend Developer',
@@ -71,6 +72,7 @@ const translations = {
         'testimonials': 'نظرات مشتریان',
         'language': 'English',
         'lang_code': 'FA',
+        'lang_code_alt': 'EN',
 
         // Hero Section
         'ui_designer_frontend_developer': 'طراح رابط کاربری و <br>توسعه دهنده فرانت‌اند',
@@ -229,9 +231,17 @@ function updatePageContent() {
     if (langSwitches.length > 0) {
         langSwitches.forEach(switchBtn => {
             const langCode = switchBtn.querySelector('.lang-code');
+            const langCodeAlt = switchBtn.querySelector('.lang-code-alt');
+
             if (langCode) {
                 langCode.textContent = translations[currentLanguage]['lang_code'];
-            } else {
+            }
+
+            if (langCodeAlt) {
+                langCodeAlt.textContent = translations[currentLanguage]['lang_code_alt'];
+            }
+
+            if (!langCode && !langCodeAlt) {
                 switchBtn.textContent = translations[currentLanguage]['language'];
             }
         });

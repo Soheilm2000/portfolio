@@ -308,22 +308,8 @@ document.addEventListener('DOMContentLoaded', () => {
         // Create flowing path
         createPath();
 
-        // Calculate particle count based on screen size
-        // Use more particles for mobile to achieve higher resolution effect
-        let particleCount;
-        if (window.innerWidth < 768) {
-            particleCount = Math.min(1500, opt.particles * 1.5); // More particles for mobile
-            opt.strokeWeight = 1.8; // Thicker lines for mobile
-            opt.tail = 95; // Stronger trail effect
-        } else {
-            particleCount = opt.particles;
-        }
+        for (let i = 0; i < opt.particles; i++) {
 
-        // Clear existing particles if resizing
-        particles.length = 0;
-
-        // Create particles
-        for (let i = 0; i < particleCount; i++) {
             particles.push(new Particle(Math.random() * width, Math.random() * height));
         }
     }
@@ -373,7 +359,6 @@ document.addEventListener('DOMContentLoaded', () => {
         width = canvas.width = window.innerWidth;
         height = canvas.height = window.innerHeight;
         createPath();
-        setup(); // Re-create particles with appropriate count for the new screen size
     });
 
     document.querySelector('.theme-toggle').addEventListener('click', () => {
