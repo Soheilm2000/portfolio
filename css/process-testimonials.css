@@ -297,6 +297,33 @@ body.dark-mode .up-indicator {
     }
 }
 
+/* Mobile portrait view - 2 columns for process steps */
+@media (max-width: 767px) and (orientation: portrait) {
+    .process-steps {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1.5rem;
+    }
+
+    .process-step {
+        padding: 1.5rem;
+    }
+
+    .step-number {
+        font-size: 1.2rem;
+        top: -15px;
+        right: 15px;
+    }
+
+    .process-step h3 {
+        font-size: 1.1rem;
+        margin-bottom: 0.5rem;
+    }
+
+    .process-step p {
+        font-size: 0.9rem;
+    }
+}
+
 @media (max-width: 576px) {
     .testimonial-item {
         padding: 1.5rem;

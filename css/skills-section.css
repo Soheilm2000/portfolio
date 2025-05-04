@@ -84,6 +84,8 @@ body:not(.dark-mode) .skills {
     box-shadow: 0 0 15px currentColor, 0 0 5px currentColor;
     filter: blur(1px);
     z-index: 2;
+    transform: translateZ(0);
+    will-change: transform, opacity;
 }
 
 .particle::after {
@@ -282,6 +284,8 @@ body:not(.dark-mode) .skills-grid-heading {
     perspective: 1000px;
     animation: fadeInUp 0.6s forwards;
     z-index: 3;
+    will-change: opacity, transform;
+    transform: translateZ(0);
 }
 
 body.dark-mode .skills-grid .skill-item {
@@ -314,6 +318,8 @@ body:not(.dark-mode) .skills-grid .skill-item {
     height: 52px;
     object-fit: contain;
     transition: all 0.3s ease;
+    will-change: transform;
+    transform: translateZ(0);
 }
 
 .skills-grid .skill-item span {
@@ -725,6 +731,8 @@ body:not(.dark-mode) .skills-grid .empty-cell {
 .skills-grid .skill-item {
     opacity: 0;
     animation: fadeInUp 0.6s forwards;
+    will-change: opacity, transform;
+    transform: translateZ(0);
 }
 
 /* Generate animation delays for each skill item */
@@ -812,6 +820,8 @@ body:not(.dark-mode) .skills-grid .empty-cell {
 .skills-grid .skill-item {
     transform-style: preserve-3d;
     perspective: 1000px;
+    backface-visibility: hidden;
+    will-change: transform;
 }
 
 .skills-grid .skill-icon {

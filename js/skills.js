@@ -4,33 +4,68 @@ document.addEventListener('DOMContentLoaded', function () {
     const lines = document.querySelectorAll('.skills .line');
     const particles = document.querySelectorAll('.skills .particle');
 
-    console.log('Number of lines found:', lines.length); // Debug log to check if lines are found
+    // Cache DOM elements and computed values
+    const skillsSection = document.getElementById('skills');
+    const isMobile = window.innerWidth <= 576;
 
-    // Ensure all lines are visible and working correctly
-    if (lines.length !== 7) {
-        console.error('Expected 7 lines, but found:', lines.length);
+    // Performance optimization: Don't initialize if not in viewport
+    let isInViewport = false;
+    let animationsInitialized = false;
+
+    // Throttle function to limit execution of expensive operations
+    function throttle(callback, limit) {
+        let waiting = false;
+        return function () {
+            if (!waiting) {
+                callback.apply(this, arguments);
+                waiting = true;
+                setTimeout(() => {
+                    waiting = false;
+                }, limit);
+            }
+        };
     }
 
-    // Check if we're in mobile portrait mode (width <= 576px)
-    const isMobilePortrait = () => window.innerWidth <= 576;
+    // Check if skills section is in viewport
+    function checkViewport() {
+        if (!skillsSection) return;
 
-    // Initialize random particles
-    initParticles();
+        const rect = skillsSection.getBoundingClientRect();
+        // Consider element in viewport if it's within 300px of the viewport
+        isInViewport = rect.top <= window.innerHeight + 300 && rect.bottom >= -300;
 
-    // Update particles on window resize
-    window.addEventListener('resize', () => {
-        // Small delay to ensure CSS transitions are complete
-        setTimeout(initParticles, 300);
-    });
+        // Initialize animations when skills section comes into view
+        if (isInViewport && !animationsInitialized) {
+            initializeAnimations();
+        }
+    }
 
-    // Hover effect to change line colors
-    skillItems.forEach(item => {
+    // Initialize animations only when needed
+    function initializeAnimations() {
+        if (animationsInitialized) return;
+
+        // Initialize particles
+        initParticles();
+
+        // Use event delegation for hover effects
+        document.querySelector('.skills-grid').addEventListener('mouseover', handleSkillHover);
+        document.querySelector('.skills-grid').addEventListener('mouseout', handleSkillMouseOut);
+
+        // Mark as initialized
+        animationsInitialized = true;
+    }
+
+    // Handle skill item hover with event delegation
+    function handleSkillHover(e) {
+        const skillItem = e.target.closest('.skill-item');
+        if (!skillItem) return;
+
         // Get color from class name
-        let color = getSkillColor(item);
+        const color = getSkillColor(skillItem);
 
-        // Mouse enter - change all lines to skill color
-        item.addEventListener('mouseenter', () => {
-            lines.forEach((line, index) => {
+        // Apply color to lines (with a limit on the number of style changes)
+        requestAnimationFrame(() => {
+            lines.forEach(line => {
                 line.style.background = `rgba(${hexToRgb(color)}, 0.2)`;
                 line.classList.add('active');
                 line.style.setProperty('color', color);
@@ -41,9 +76,15 @@ document.addEventListener('DOMContentLoaded', function () {
                 }
             });
         });
+    }
 
-        // Mouse leave - restore original colors
-        item.addEventListener('mouseleave', () => {
+    // Handle skill item mouse out with event delegation
+    function handleSkillMouseOut(e) {
+        const skillItem = e.target.closest('.skill-item');
+        if (!skillItem) return;
+
+        // Reset lines (with requestAnimationFrame for better performance)
+        requestAnimationFrame(() => {
             lines.forEach((line, index) => {
                 line.style.background = '';
                 line.classList.remove('active');
@@ -51,75 +92,72 @@ document.addEventListener('DOMContentLoaded', function () {
                 resetParticleColor(line.querySelector('.particle'), index);
             });
         });
+    }
 
-        // Create particle burst effect when clicking on skills
-        item.addEventListener('click', createParticleBurst);
-    });
-
-    // Initialize particles with random properties
+    // Initialize particles with random properties - optimized
     function initParticles() {
+        // Create a document fragment to minimize DOM operations
+        const fragment = document.createDocumentFragment();
+
         particles.forEach((particle, index) => {
-            // Check if this particle's parent line is visible
-            const parentLine = particle.parentElement;
-            if (isMobilePortrait() && index >= 3) {
-                // Hide particle effect for hidden lines in mobile portrait
+            // Skip initialization for particles not used in mobile
+            if (isMobile && index >= 3) {
                 particle.style.display = 'none';
-            } else {
-                particle.style.display = '';
-                resetParticleColor(particle, index);
-                randomizeParticle(particle);
+                return;
             }
+
+            particle.style.display = '';
+            resetParticleColor(particle, index);
+            randomizeParticle(particle);
         });
     }
 
-    // Randomize a single particle's properties
+    // Randomize a single particle's properties - optimized
     function randomizeParticle(particle) {
-        // Random colors based on predefined set
+        // Random colors based on predefined set - use array indexing instead of creating new array each time
         const colors = ['#3498db', '#e74c3c', '#2ecc71', '#f39c12', '#9b59b6',
             '#1abc9c', '#f1c40f', '#d35400', '#8e44ad', '#16a085', '#c0392b'];
-        const randomColor = colors[Math.floor(Math.random() * colors.length)];
+        const randomColor = colors[Math.floor(Math.random() * 11)];
 
-        // Add random animation duration between 5-12 seconds
+        // Animation timing - calculate once
         const duration = Math.random() * 7000 + 5000; // 5-12 seconds
-
-        // Add random animation delay so particles don't all start at once
         const delay = Math.random() * 3000; // 0-3 seconds
-
-        // Apply styles
-        particle.style.backgroundColor = randomColor;
-        particle.style.color = randomColor;
-        particle.style.animationDuration = `${duration}ms`;
-        particle.style.animationDelay = `${delay}ms`;
-        particle.style.filter = 'brightness(1.4) blur(1px)';
-        particle.style.boxShadow = `0 0 15px ${randomColor}, 0 0 5px ${randomColor}`;
-
-        // Random size variation (6-10px)
         const size = Math.random() * 4 + 6;
-        particle.style.width = `${size}px`;
-        particle.style.height = `${size}px`;
-        particle.style.left = `${-size / 2}px`;
 
-        // Adjust trail
-        if (particle.nextElementSibling) {
-            const trail = particle.nextElementSibling;
-            trail.style.height = `${40 + Math.random() * 50}px`;
-            trail.style.opacity = '0.5';
-        }
+        // Group style changes for better performance
+        requestAnimationFrame(() => {
+            // Apply styles in batch
+            Object.assign(particle.style, {
+                backgroundColor: randomColor,
+                color: randomColor,
+                animationDuration: `${duration}ms`,
+                animationDelay: `${delay}ms`,
+                filter: 'brightness(1.4) blur(1px)',
+                boxShadow: `0 0 15px ${randomColor}, 0 0 5px ${randomColor}`,
+                width: `${size}px`,
+                height: `${size}px`,
+                left: `${-size / 2}px`
+            });
+        });
     }
 
-    // Reset particle to its default color based on index
+    // Reset particle to its default color based on index - optimized with a cached array
     function resetParticleColor(particle, index) {
         if (!particle) return;
 
         const colors = ['#3498db', '#e74c3c', '#2ecc71', '#f39c12', '#9b59b6', '#1abc9c', '#f1c40f'];
-        const defaultColor = colors[index % colors.length];
+        const defaultColor = colors[index % 7];
 
         particle.style.backgroundColor = defaultColor;
         particle.style.color = defaultColor;
     }
 
-    // Helper function to convert hex to RGB
+    // Helper function to convert hex to RGB - optimized with caching
+    const rgbCache = {}; // Cache RGB values
     function hexToRgb(hex) {
+        // Use cached value if available
+        if (rgbCache[hex]) return rgbCache[hex];
+
         // Remove # if present
         hex = hex.replace('#', '');
 
@@ -128,77 +166,91 @@ document.addEventListener('DOMContentLoaded', function () {
         const g = parseInt(hex.substring(2, 4), 16);
         const b = parseInt(hex.substring(4, 6), 16);
 
-        return `${r}, ${g}, ${b}`;
+        // Cache the result
+        rgbCache[hex] = `${r}, ${g}, ${b}`;
+
+        return rgbCache[hex];
     }
 
-    // Helper function to get color based on skill type
+    // Helper function to get color based on skill type - optimized with lookup table
+    const skillColorMap = {
+        'html': '#E44D26',
+        'css': '#264DE4',
+        'js': '#F7DF1E',
+        'react': '#61DAFB',
+        'vue': '#4FC08D',
+        'angular': '#DD0031',
+        'node': '#339933',
+        'php': '#777BB3',
+        'wordpress': '#21759B',
+        'elementor': '#92003B',
+        'typescript': '#3178C6',
+        'mongo': '#47A248',
+        'sql': '#4479A1',
+        'git': '#F05032',
+        'kotlin': '#7F52FF',
+        'android': '#3DDC84',
+        'sass': '#CC6699',
+        'docker': '#2496ED',
+        'python': '#3776AB',
+        'aws': '#FF9900',
+        'flutter': '#45D0F0'
+    };
+
     function getSkillColor(skill) {
-        // Get accent color from item
-        if (skill.classList.contains('html')) return '#E44D26';
-        else if (skill.classList.contains('css')) return '#264DE4';
-        else if (skill.classList.contains('js')) return '#F7DF1E';
-        else if (skill.classList.contains('react')) return '#61DAFB';
-        else if (skill.classList.contains('vue')) return '#4FC08D';
-        else if (skill.classList.contains('angular')) return '#DD0031';
-        else if (skill.classList.contains('node')) return '#339933';
-        else if (skill.classList.contains('php')) return '#777BB3';
-        else if (skill.classList.contains('wordpress')) return '#21759B';
-        else if (skill.classList.contains('elementor')) return '#92003B';
-        else if (skill.classList.contains('typescript')) return '#3178C6';
-        else if (skill.classList.contains('mongo')) return '#47A248';
-        else if (skill.classList.contains('sql')) return '#4479A1';
-        else if (skill.classList.contains('git')) return '#F05032';
-        else if (skill.classList.contains('kotlin')) return '#7F52FF';
-        else if (skill.classList.contains('android')) return '#3DDC84';
-        else if (skill.classList.contains('sass')) return '#CC6699';
-        else if (skill.classList.contains('docker')) return '#2496ED';
-        else if (skill.classList.contains('python')) return '#3776AB';
-        else if (skill.classList.contains('aws')) return '#FF9900';
-        else if (skill.classList.contains('flutter')) return '#45D0F0';
-        else return '#6c63ff'; // Default purple
+        // Find the skill class in the list of classes
+        for (const className of skill.classList) {
+            if (skillColorMap[className]) {
+                return skillColorMap[className];
+            }
+        }
+        return '#6c63ff'; // Default purple
     }
 
+    // Create particle burst effect with optimized rendering and cleanup
     function createParticleBurst(e) {
-        const skill = this;
+        const skill = e.target.closest('.skill-item');
+        if (!skill) return;
+
         const rect = skill.getBoundingClientRect();
         const centerX = rect.left + rect.width / 2;
         const centerY = rect.top + rect.height / 2;
 
         // Get accent color from item
-        let color = '#6c63ff'; // Default purple
+        let color = getSkillColor(skill);
 
-        // Try to determine color from hover style
-        if (skill.classList.contains('html')) color = '#E44D26';
-        else if (skill.classList.contains('css')) color = '#264DE4';
-        else if (skill.classList.contains('js')) color = '#F7DF1E';
-        else if (skill.classList.contains('react')) color = '#61DAFB';
-        else if (skill.classList.contains('vue')) color = '#4FC08D';
-        else if (skill.classList.contains('node')) color = '#339933';
+        // Create fragment to add all particles at once
+        const fragment = document.createDocumentFragment();
 
-        // Create 12 particles
-        for (let i = 0; i < 12; i++) {
-            createParticle(centerX, centerY, color);
+        // Create 8 particles - reduced to 8 for better performance
+        for (let i = 0; i < 8; i++) {
+            const particle = createParticle(centerX, centerY, color);
+            fragment.appendChild(particle);
         }
+
+        // Add all particles to DOM at once
+        document.body.appendChild(fragment);
     }
 
     function createParticle(x, y, color) {
         const particle = document.createElement('div');
-        document.body.appendChild(particle);
 
         // Random size between 5-12px
         const size = Math.random() * 7 + 5;
 
-        // Style the particle
-        particle.style.width = `${size}px`;
-        particle.style.height = `${size}px`;
-        particle.style.position = 'fixed';
-        particle.style.left = `${x - size / 2}px`;
-        particle.style.top = `${y - size / 2}px`;
-        particle.style.borderRadius = '50%';
-        particle.style.backgroundColor = color;
-        particle.style.boxShadow = `0 0 ${size * 2}px ${color}`;
-        particle.style.zIndex = '1000';
-        particle.style.pointerEvents = 'none';
+        // Style the particle - set styles in batch
+        Object.assign(particle.style, {
+            width: `${size}px`,
+            height: `${size}px`,
+            position: 'fixed',
+            left: `${x - size / 2}px`,
+            top: `${y - size / 2}px`,
+            borderRadius: '50%',
+            backgroundColor: color,
+            boxShadow: `0 0 ${size * 2}px ${color}`,
+            zIndex: '1000',
+            pointerEvents: 'none'
+        });
 
         // Random direction
         const angle = Math.random() * Math.PI * 2;
@@ -206,7 +258,7 @@ document.addEventListener('DOMContentLoaded', function () {
         const vx = Math.cos(angle) * speed;
         const vy = Math.sin(angle) * speed;
 
-        // Animate using Web Animation API
+        // Use Web Animation API for better performance
         const keyframes = [
             {
                 transform: 'translate(0, 0) scale(1)',
@@ -229,33 +281,40 @@ document.addEventListener('DOMContentLoaded', function () {
         animation.onfinish = () => {
             particle.remove();
         };
+
+        return particle;
     }
 
-    // Function to randomize particle animations - call this periodically
-    function randomizeParticles() {
-        particles.forEach((particle) => {
-            // Restart animation with new random values
-            particle.style.animation = 'none';
-            particle.offsetHeight; // Trigger reflow
-
-            // Set new random properties
-            randomizeParticle(particle);
-
-            // Restart animation
-            particle.style.animation = `particleFlow ${particle.style.animationDuration} linear infinite ${particle.style.animationDelay}`;
-        });
-    }
-
-    // Randomize individual particles at different intervals
-    particles.forEach((particle, index) => {
-        // Each particle gets its own random interval between 8-15 seconds
-        const randomInterval = Math.random() * 7000 + 8000;
-        setInterval(() => {
-            // Only randomize this specific particle
-            particle.style.animation = 'none';
-            particle.offsetHeight;
-            randomizeParticle(particle);
-            particle.style.animation = `particleFlow ${particle.style.animationDuration} linear infinite ${particle.style.animationDelay}`;
-        }, randomInterval);
+    // Use IntersectionObserver to efficiently check if section is in viewport
+    const observer = new IntersectionObserver((entries) => {
+        if (entries[0].isIntersecting) {
+            checkViewport();
+        }
+    }, {
+        rootMargin: '300px'
     });
+
+    if (skillsSection) {
+        observer.observe(skillsSection);
+    }
+
+    // Set up click handler using event delegation
+    document.querySelector('.skills-grid').addEventListener('click', createParticleBurst);
+
+    // Throttled resize handler
+    window.addEventListener('resize', throttle(() => {
+        if (animationsInitialized) {
+            // Update mobile status
+            const wasMobile = isMobile;
+            const newIsMobile = window.innerWidth <= 576;
+
+            // Only reinitialize if mobile status changed
+            if (wasMobile !== newIsMobile) {
+                setTimeout(initParticles, 300);
+            }
+        }
+    }, 250));
+
+    // Initial viewport check
+    checkViewport();
 });

@@ -560,6 +560,33 @@ body.dark-mode .modern-btn-wrapper:hover .glass-layer {
     }
 }
 
+@media (max-width: 768px) and (orientation: portrait) {
+    /* Hide specific blobs to improve performance */
+    .blob-3,
+    .blob-4 {
+        display: none;
+    }
+
+    /* Simplify remaining blobs */
+    .blob-1,
+    .blob-2 {
+        filter: blur(30px); /* Reduce blur for better performance */
+        opacity: 0.5;
+        animation: none; /* Remove animations for better performance */
+        transform: none !important; /* Prevent any transforms */
+    }
+
+    /* Remove any parallax effects for blobs on mobile portrait */
+    .blob-container {
+        pointer-events: none; /* Prevent any mouse interactions */
+    }
+
+    /* Restore original blob image container animation */
+    .blob-image-container {
+        animation: blob-morph 30s cubic-bezier(0.445, 0.05, 0.55, 0.95) infinite;
+    }
+}
+
 @media (max-width: 480px) {
     .hero-content h1 {
         font-size: 2.5rem;
