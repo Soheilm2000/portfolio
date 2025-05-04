@@ -2,17 +2,17 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <title>Frontend Developer & UI Designer Portfolio</title>
     <!-- Preload critical CSS files -->
-    <link rel="preload" href="css/variables.css" as="style">
-    <link rel="preload" href="css/layout.css" as="style">
-    <link rel="preload" href="css/header.css" as="style">
-    <link rel="stylesheet" href="css/main.css">
-    <link rel="stylesheet"
-          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link as="style" href="css/variables.css" rel="preload">
+    <link as="style" href="css/layout.css" rel="preload">
+    <link as="style" href="css/header.css" rel="preload">
+    <link href="css/main.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+          rel="stylesheet">
+    <link href="https://fonts.googleapis.com" rel="preconnect">
+    <link crossorigin href="https://fonts.gstatic.com" rel="preconnect">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap"
           rel="stylesheet">
     <style>
@@ -67,9 +67,9 @@
         <svg xmlns="http://www.w3.org/2000/svg">
             <defs>
                 <filter id="goo">
-                    <feGaussianBlur in="SourceGraphic" stdDeviation="10" result="blur"/>
-                    <feColorMatrix in="blur" mode="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 18 -8"
-                                   result="goo"/>
+                    <feGaussianBlur in="SourceGraphic" result="blur" stdDeviation="10"/>
+                    <feColorMatrix in="blur" mode="matrix" result="goo"
+                                   values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 18 -8"/>
                     <feBlend in="SourceGraphic" in2="goo"/>
                 </filter>
             </defs>
@@ -92,9 +92,9 @@
         <svg xmlns="http://www.w3.org/2000/svg">
             <defs>
                 <filter id="goo-theme">
-                    <feGaussianBlur in="SourceGraphic" stdDeviation="10" result="blur"/>
-                    <feColorMatrix in="blur" mode="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 18 -8"
-                                   result="goo"/>
+                    <feGaussianBlur in="SourceGraphic" result="blur" stdDeviation="10"/>
+                    <feColorMatrix in="blur" mode="matrix" result="goo"
+                                   values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 18 -8"/>
                     <feBlend in="SourceGraphic" in2="goo"/>
                 </filter>
             </defs>
@@ -131,18 +131,18 @@
 <header>
     <div class="container">
         <nav>
-            <a href="#hero" class="logo" data-i18n="portfolio">Portfolio</a>
+            <a class="logo" data-i18n="portfolio" href="#hero">Portfolio</a>
             <ul class="nav-links">
-                <li><a href="#work" data-i18n="work">Work</a></li>
-                <li><a href="#process" data-i18n="process">Process</a></li>
-                <li><a href="#skills" data-i18n="skills">Skills</a></li>
-                <li><a href="#testimonials" data-i18n="testimonials">Testimonials</a></li>
+                <li><a data-i18n="work" href="#work">Work</a></li>
+                <li><a data-i18n="process" href="#process">Process</a></li>
+                <li><a data-i18n="skills" href="#skills">Skills</a></li>
+                <li><a data-i18n="testimonials" href="#testimonials">Testimonials</a></li>
             </ul>
             <div class="right-controls">
                 <div class="theme-toggle">
                     <div class="switch">
                         <label for="toggle">
-                            <input id="toggle" class="toggle-switch" type="checkbox">
+                            <input class="toggle-switch" id="toggle" type="checkbox">
                             <div class="sun-moon">
                                 <div class="dots"></div>
                             </div>
@@ -170,7 +170,7 @@
     </div>
 </header>
 
-<section id="hero" class="hero">
+<section class="hero" id="hero">
     <div class="blob-container">
         <div class="blob blob-1"></div>
         <div class="blob blob-2"></div>
@@ -189,14 +189,14 @@
             <div class="hero-cta">
                 <div class="modern-btn-wrapper">
                     <div class="btn primary"></div>
-                    <a href="#work" class="glass-layer" data-i18n="see_my_work">See My Work</a>
+                    <a class="glass-layer" data-i18n="see_my_work" href="#work">See My Work</a>
                 </div>
             </div>
         </div>
         <div class="hero-image">
             <div class="blob-image-container">
                 <div class="blob-overlay"></div>
-                <img src="images/hero/hero-image.webp" alt="Hero image">
+                <img alt="Hero image" src="images/hero/hero-image.webp">
             </div>
         </div>
     </div>
@@ -206,8 +206,8 @@
     </div>
 </section>
 
-<section id="work" class="portfolio">
-    <div id="portfolio-vanta-bg" class="portfolio-vanta-bg"></div>
+<section class="portfolio" id="work">
+    <div class="portfolio-vanta-bg" id="portfolio-vanta-bg"></div>
 
     <div class="portfolio-container">
         <!-- Portfolio Item 1 -->
@@ -219,35 +219,35 @@
                 </div>
                 <div class="portfolio-gallery">
                     <div class="portfolio-item">
-                        <img src="https://nojumabzar.ir/wp-content/uploads/2025/04/Screenshot-2025-04-28-191350.png"
-                             loading="lazy" alt="Dashboard 1">
+                        <img alt="Dashboard 1"
+                             loading="lazy" src="https://nojumabzar.ir/wp-content/uploads/2025/04/Screenshot-2025-04-28-191350.png">
                         <span class="zoom-plus-h"></span>
                         <span class="zoom-plus-v"></span>
                     </div>
                     <div class="portfolio-item">
-                        <img src="https://nojumabzar.ir/wp-content/uploads/2025/04/Screenshot-2025-04-28-224326.png"
-                             loading="lazy" alt="Dashboard 2">
+                        <img alt="Dashboard 2"
+                             loading="lazy" src="https://nojumabzar.ir/wp-content/uploads/2025/04/Screenshot-2025-04-28-224326.png">
                         <span class="zoom-plus-h"></span>
                         <span class="zoom-plus-v"></span>
                     </div>
                     <div class="portfolio-item">
-                        <img src="https://nojumabzar.ir/wp-content/uploads/2025/04/Screenshot-2025-04-28-224652.png"
-                             loading="lazy" alt="Dashboard 3">
+                        <img alt="Dashboard 3"
+                             loading="lazy" src="https://nojumabzar.ir/wp-content/uploads/2025/04/Screenshot-2025-04-28-224652.png">
                         <span class="zoom-plus-h"></span>
                         <span class="zoom-plus-v"></span>
                     </div>
                     <div class="portfolio-item">
-                        <img src="https://picsum.photos/600/400?random=4" loading="lazy" alt="Dashboard 4">
+                        <img alt="Dashboard 4" loading="lazy" src="https://picsum.photos/600/400?random=4">
                         <span class="zoom-plus-h"></span>
                         <span class="zoom-plus-v"></span>
                     </div>
                     <div class="portfolio-item">
-                        <img src="https://picsum.photos/600/400?random=5" loading="lazy" alt="Dashboard 5">
+                        <img alt="Dashboard 5" loading="lazy" src="https://picsum.photos/600/400?random=5">
                         <span class="zoom-plus-h"></span>
                         <span class="zoom-plus-v"></span>
                     </div>
                     <div class="portfolio-item">
-                        <img src="https://picsum.photos/600/400?random=6" loading="lazy" alt="Dashboard 6">
+                        <img alt="Dashboard 6" loading="lazy" src="https://picsum.photos/600/400?random=6">
                         <span class="zoom-plus-h"></span>
                         <span class="zoom-plus-v"></span>
                     </div>
@@ -264,32 +264,32 @@
                 </div>
                 <div class="portfolio-gallery">
                     <div class="portfolio-item">
-                        <img src="https://picsum.photos/600/400?random=7" loading="lazy" alt="E-commerce 1">
+                        <img alt="E-commerce 1" loading="lazy" src="https://picsum.photos/600/400?random=7">
                         <span class="zoom-plus-h"></span>
                         <span class="zoom-plus-v"></span>
                     </div>
                     <div class="portfolio-item">
-                        <img src="https://picsum.photos/600/400?random=8" loading="lazy" alt="E-commerce 2">
+                        <img alt="E-commerce 2" loading="lazy" src="https://picsum.photos/600/400?random=8">
                         <span class="zoom-plus-h"></span>
                         <span class="zoom-plus-v"></span>
                     </div>
                     <div class="portfolio-item">
-                        <img src="https://picsum.photos/600/400?random=9" loading="lazy" alt="E-commerce 3">
+                        <img alt="E-commerce 3" loading="lazy" src="https://picsum.photos/600/400?random=9">
                         <span class="zoom-plus-h"></span>
                         <span class="zoom-plus-v"></span>
                     </div>
                     <div class="portfolio-item">
-                        <img src="https://picsum.photos/600/400?random=10" loading="lazy" alt="E-commerce 4">
+                        <img alt="E-commerce 4" loading="lazy" src="https://picsum.photos/600/400?random=10">
                         <span class="zoom-plus-h"></span>
                         <span class="zoom-plus-v"></span>
                     </div>
                     <div class="portfolio-item">
-                        <img src="https://picsum.photos/600/400?random=11" loading="lazy" alt="E-commerce 5">
+                        <img alt="E-commerce 5" loading="lazy" src="https://picsum.photos/600/400?random=11">
                         <span class="zoom-plus-h"></span>
                         <span class="zoom-plus-v"></span>
                     </div>
                     <div class="portfolio-item">
-                        <img src="https://picsum.photos/600/400?random=12" loading="lazy" alt="E-commerce 6">
+                        <img alt="E-commerce 6" loading="lazy" src="https://picsum.photos/600/400?random=12">
                         <span class="zoom-plus-h"></span>
                         <span class="zoom-plus-v"></span>
                     </div>
@@ -306,32 +306,32 @@
                 </div>
                 <div class="portfolio-gallery">
                     <div class="portfolio-item">
-                        <img src="https://picsum.photos/600/400?random=13" loading="lazy" alt="Healthcare 1">
+                        <img alt="Healthcare 1" loading="lazy" src="https://picsum.photos/600/400?random=13">
                         <span class="zoom-plus-h"></span>
                         <span class="zoom-plus-v"></span>
                     </div>
                     <div class="portfolio-item">
-                        <img src="https://picsum.photos/600/400?random=14" loading="lazy" alt="Healthcare 2">
+                        <img alt="Healthcare 2" loading="lazy" src="https://picsum.photos/600/400?random=14">
                         <span class="zoom-plus-h"></span>
                         <span class="zoom-plus-v"></span>
                     </div>
                     <div class="portfolio-item">
-                        <img src="https://picsum.photos/600/400?random=15" loading="lazy" alt="Healthcare 3">
+                        <img alt="Healthcare 3" loading="lazy" src="https://picsum.photos/600/400?random=15">
                         <span class="zoom-plus-h"></span>
                         <span class="zoom-plus-v"></span>
                     </div>
                     <div class="portfolio-item">
-                        <img src="https://picsum.photos/600/400?random=16" loading="lazy" alt="Healthcare 4">
+                        <img alt="Healthcare 4" loading="lazy" src="https://picsum.photos/600/400?random=16">
                         <span class="zoom-plus-h"></span>
                         <span class="zoom-plus-v"></span>
                     </div>
                     <div class="portfolio-item">
-                        <img src="https://picsum.photos/600/400?random=17" loading="lazy" alt="Healthcare 5">
+                        <img alt="Healthcare 5" loading="lazy" src="https://picsum.photos/600/400?random=17">
                         <span class="zoom-plus-h"></span>
                         <span class="zoom-plus-v"></span>
                     </div>
                     <div class="portfolio-item">
-                        <img src="https://picsum.photos/600/400?random=18" loading="lazy" alt="Healthcare 6">
+                        <img alt="Healthcare 6" loading="lazy" src="https://picsum.photos/600/400?random=18">
                         <span class="zoom-plus-h"></span>
                         <span class="zoom-plus-v"></span>
                     </div>
@@ -348,32 +348,32 @@
                 </div>
                 <div class="portfolio-gallery">
                     <div class="portfolio-item">
-                        <img src="https://picsum.photos/600/400?random=19" loading="lazy" alt="Travel 1">
+                        <img alt="Travel 1" loading="lazy" src="https://picsum.photos/600/400?random=19">
                         <span class="zoom-plus-h"></span>
                         <span class="zoom-plus-v"></span>
                     </div>
                     <div class="portfolio-item">
-                        <img src="https://picsum.photos/600/400?random=20" loading="lazy" alt="Travel 2">
+                        <img alt="Travel 2" loading="lazy" src="https://picsum.photos/600/400?random=20">
                         <span class="zoom-plus-h"></span>
                         <span class="zoom-plus-v"></span>
                     </div>
                     <div class="portfolio-item">
-                        <img src="https://picsum.photos/600/400?random=21" loading="lazy" alt="Travel 3">
+                        <img alt="Travel 3" loading="lazy" src="https://picsum.photos/600/400?random=21">
                         <span class="zoom-plus-h"></span>
                         <span class="zoom-plus-v"></span>
                     </div>
                     <div class="portfolio-item">
-                        <img src="https://picsum.photos/600/400?random=22" loading="lazy" alt="Travel 4">
+                        <img alt="Travel 4" loading="lazy" src="https://picsum.photos/600/400?random=22">
                         <span class="zoom-plus-h"></span>
                         <span class="zoom-plus-v"></span>
                     </div>
                     <div class="portfolio-item">
-                        <img src="https://picsum.photos/600/400?random=23" loading="lazy" alt="Travel 5">
+                        <img alt="Travel 5" loading="lazy" src="https://picsum.photos/600/400?random=23">
                         <span class="zoom-plus-h"></span>
                         <span class="zoom-plus-v"></span>
                     </div>
                     <div class="portfolio-item">
-                        <img src="https://picsum.photos/600/400?random=24" loading="lazy" alt="Travel 6">
+                        <img alt="Travel 6" loading="lazy" src="https://picsum.photos/600/400?random=24">
                         <span class="zoom-plus-h"></span>
                         <span class="zoom-plus-v"></span>
                     </div>
@@ -390,32 +390,32 @@
                 </div>
                 <div class="portfolio-gallery">
                     <div class="portfolio-item">
-                        <img src="https://picsum.photos/600/400?random=25" loading="lazy" alt="Music 1">
+                        <img alt="Music 1" loading="lazy" src="https://picsum.photos/600/400?random=25">
                         <span class="zoom-plus-h"></span>
                         <span class="zoom-plus-v"></span>
                     </div>
                     <div class="portfolio-item">
-                        <img src="https://picsum.photos/600/400?random=26" loading="lazy" alt="Music 2">
+                        <img alt="Music 2" loading="lazy" src="https://picsum.photos/600/400?random=26">
                         <span class="zoom-plus-h"></span>
                         <span class="zoom-plus-v"></span>
                     </div>
                     <div class="portfolio-item">
-                        <img src="https://picsum.photos/600/400?random=27" loading="lazy" alt="Music 3">
+                        <img alt="Music 3" loading="lazy" src="https://picsum.photos/600/400?random=27">
                         <span class="zoom-plus-h"></span>
                         <span class="zoom-plus-v"></span>
                     </div>
                     <div class="portfolio-item">
-                        <img src="https://picsum.photos/600/400?random=28" loading="lazy" alt="Music 4">
+                        <img alt="Music 4" loading="lazy" src="https://picsum.photos/600/400?random=28">
                         <span class="zoom-plus-h"></span>
                         <span class="zoom-plus-v"></span>
                     </div>
                     <div class="portfolio-item">
-                        <img src="https://picsum.photos/600/400?random=29" loading="lazy" alt="Music 5">
+                        <img alt="Music 5" loading="lazy" src="https://picsum.photos/600/400?random=29">
                         <span class="zoom-plus-h"></span>
                         <span class="zoom-plus-v"></span>
                     </div>
                     <div class="portfolio-item">
-                        <img src="https://picsum.photos/600/400?random=30" loading="lazy" alt="Music 6">
+                        <img alt="Music 6" loading="lazy" src="https://picsum.photos/600/400?random=30">
                         <span class="zoom-plus-h"></span>
                         <span class="zoom-plus-v"></span>
                     </div>
@@ -432,32 +432,32 @@
                 </div>
                 <div class="portfolio-gallery">
                     <div class="portfolio-item">
-                        <img src="https://picsum.photos/600/400?random=31" loading="lazy" alt="Productivity 1">
+                        <img alt="Productivity 1" loading="lazy" src="https://picsum.photos/600/400?random=31">
                         <span class="zoom-plus-h"></span>
                         <span class="zoom-plus-v"></span>
                     </div>
                     <div class="portfolio-item">
-                        <img src="https://picsum.photos/600/400?random=32" loading="lazy" alt="Productivity 2">
+                        <img alt="Productivity 2" loading="lazy" src="https://picsum.photos/600/400?random=32">
                         <span class="zoom-plus-h"></span>
                         <span class="zoom-plus-v"></span>
                     </div>
                     <div class="portfolio-item">
-                        <img src="https://picsum.photos/600/400?random=33" loading="lazy" alt="Productivity 3">
+                        <img alt="Productivity 3" loading="lazy" src="https://picsum.photos/600/400?random=33">
                         <span class="zoom-plus-h"></span>
                         <span class="zoom-plus-v"></span>
                     </div>
                     <div class="portfolio-item">
-                        <img src="https://picsum.photos/600/400?random=34" loading="lazy" alt="Productivity 4">
+                        <img alt="Productivity 4" loading="lazy" src="https://picsum.photos/600/400?random=34">
                         <span class="zoom-plus-h"></span>
                         <span class="zoom-plus-v"></span>
                     </div>
                     <div class="portfolio-item">
-                        <img src="https://picsum.photos/600/400?random=35" loading="lazy" alt="Productivity 5">
+                        <img alt="Productivity 5" loading="lazy" src="https://picsum.photos/600/400?random=35">
                         <span class="zoom-plus-h"></span>
                         <span class="zoom-plus-v"></span>
                     </div>
                     <div class="portfolio-item">
-                        <img src="https://picsum.photos/600/400?random=36" loading="lazy" alt="Productivity 6">
+                        <img alt="Productivity 6" loading="lazy" src="https://picsum.photos/600/400?random=36">
                         <span class="zoom-plus-h"></span>
                         <span class="zoom-plus-v"></span>
                     </div>
@@ -467,7 +467,7 @@
     </div>
 </section>
 
-<section id="skills" class="skills">
+<section class="skills" id="skills">
     <div class="lines">
         <div class="line">
             <div class="particle"></div>
@@ -502,127 +502,127 @@
             <div class="skills-grid">
                 <div class="skill-item wordpress">
                     <div class="skill-icon wordpress">
-                        <img src="images/icons/wordpress.webp" loading="lazy" alt="WordPress">
+                        <img alt="WordPress" loading="lazy" src="images/icons/wordpress.webp">
                     </div>
                     <span>WordPress</span>
                 </div>
                 <div class="skill-item php">
                     <div class="skill-icon php">
-                        <img src="images/icons/php.webp" loading="lazy" alt="PHP">
+                        <img alt="PHP" loading="lazy" src="images/icons/php.webp">
                     </div>
                     <span>PHP</span>
                 </div>
                 <div class="skill-item html">
                     <div class="skill-icon html">
-                        <img src="images/icons/html5.webp" loading="lazy" alt="HTML5">
+                        <img alt="HTML5" loading="lazy" src="images/icons/html5.webp">
                     </div>
                     <span>HTML5</span>
                 </div>
                 <div class="skill-item css">
                     <div class="skill-icon css">
-                        <img src="images/icons/css3.webp" loading="lazy" alt="CSS3">
+                        <img alt="CSS3" loading="lazy" src="images/icons/css3.webp">
                     </div>
                     <span>CSS3</span>
                 </div>
                 <div class="skill-item elementor">
                     <div class="skill-icon elementor">
-                        <img src="images/icons/elementor.webp" loading="lazy" alt="Elementor">
+                        <img alt="Elementor" loading="lazy" src="images/icons/elementor.webp">
                     </div>
                     <span>Elementor</span>
                 </div>
                 <div class="skill-item angular">
                     <div class="skill-icon angular">
-                        <img src="images/icons/angular.webp" loading="lazy" alt="Angular">
+                        <img alt="Angular" loading="lazy" src="images/icons/angular.webp">
                     </div>
                     <span>Angular</span>
                 </div>
                 <div class="skill-item react">
                     <div class="skill-icon react">
-                        <img src="images/icons/react.webp" loading="lazy" alt="React">
+                        <img alt="React" loading="lazy" src="images/icons/react.webp">
                     </div>
                     <span>React</span>
                 </div>
                 <div class="skill-item vue">
                     <div class="skill-icon vue">
-                        <img src="images/icons/vue.webp" loading="lazy" alt="Vue.js">
+                        <img alt="Vue.js" loading="lazy" src="images/icons/vue.webp">
                     </div>
                     <span>Vue.js</span>
                 </div>
                 <div class="skill-item android">
                     <div class="skill-icon android">
-                        <img src="images/icons/android.webp" loading="lazy" alt="Android">
+                        <img alt="Android" loading="lazy" src="images/icons/android.webp">
                     </div>
                     <span>Android</span>
                 </div>
                 <div class="skill-item node">
                     <div class="skill-icon node">
-                        <img src="images/icons/nodejs.webp" loading="lazy" alt="Node.js">
+                        <img alt="Node.js" loading="lazy" src="images/icons/nodejs.webp">
                     </div>
                     <span>Node.js</span>
                 </div>
                 <div class="skill-item sql">
                     <div class="skill-icon sql">
-                        <img src="images/icons/sql.webp" loading="lazy" alt="SQL">
+                        <img alt="SQL" loading="lazy" src="images/icons/sql.webp">
                     </div>
                     <span>SQL</span>
                 </div>
                 <div class="skill-item mongo">
                     <div class="skill-icon mongo">
-                        <img src="images/icons/mongodb.webp" loading="lazy" alt="MongoDB">
+                        <img alt="MongoDB" loading="lazy" src="images/icons/mongodb.webp">
                     </div>
                     <span>MongoDB</span>
                 </div>
                 <div class="skill-item typescript">
                     <div class="skill-icon typescript">
-                        <img src="images/icons/typescript.webp" loading="lazy" alt="TypeScript">
+                        <img alt="TypeScript" loading="lazy" src="images/icons/typescript.webp">
                     </div>
                     <span>TypeScript</span>
                 </div>
                 <div class="skill-item kotlin">
                     <div class="skill-icon kotlin">
-                        <img src="images/icons/kotlin.webp" loading="lazy" alt="Kotlin">
+                        <img alt="Kotlin" loading="lazy" src="images/icons/kotlin.webp">
                     </div>
                     <span>Kotlin</span>
                 </div>
                 <div class="skill-item js">
                     <div class="skill-icon js">
-                        <img src="images/icons/javascript.webp" loading="lazy" alt="JavaScript">
+                        <img alt="JavaScript" loading="lazy" src="images/icons/javascript.webp">
                     </div>
                     <span>JavaScript</span>
                 </div>
                 <div class="skill-item git">
                     <div class="skill-icon git">
-                        <img src="images/icons/git.webp" loading="lazy" alt="Git">
+                        <img alt="Git" loading="lazy" src="images/icons/git.webp">
                     </div>
                     <span>Git</span>
                 </div>
                 <div class="skill-item sass">
                     <div class="skill-icon sass">
-                        <img src="images/icons/sass.webp" loading="lazy" alt="Sass">
+                        <img alt="Sass" loading="lazy" src="images/icons/sass.webp">
                     </div>
                     <span>Sass</span>
                 </div>
                 <div class="skill-item docker">
                     <div class="skill-icon docker">
-                        <img src="images/icons/docker.webp" loading="lazy" alt="Docker">
+                        <img alt="Docker" loading="lazy" src="images/icons/docker.webp">
                     </div>
                     <span>Docker</span>
                 </div>
                 <div class="skill-item python">
                     <div class="skill-icon python">
-                        <img src="images/icons/python.webp" loading="lazy" alt="Python">
+                        <img alt="Python" loading="lazy" src="images/icons/python.webp">
                     </div>
                     <span>Python</span>
                 </div>
                 <div class="skill-item aws">
                     <div class="skill-icon aws">
-                        <img src="images/icons/aws.webp" loading="lazy" alt="AWS">
+                        <img alt="AWS" loading="lazy" src="images/icons/aws.webp">
                     </div>
                     <span>AWS</span>
                 </div>
                 <div class="skill-item flutter">
                     <div class="skill-icon flutter">
-                        <img src="images/icons/flutter.webp" loading="lazy" alt="Flutter">
+                        <img alt="Flutter" loading="lazy" src="images/icons/flutter.webp">
                     </div>
                     <span>Flutter</span>
                 </div>
@@ -631,7 +631,7 @@
     </div>
 </section>
 
-<section id="process" class="process">
+<section class="process" id="process">
     <div class="container">
         <h2 data-i18n="my_design_process">My Design Process</h2>
         <p class="section-intro" data-i18n="process_description">I follow a systematic approach to deliver exceptional
@@ -670,10 +670,10 @@
     </div>
 </section>
 
-<section id="testimonials" class="testimonials">
-    <div id="particles-bg" class="particles-container"></div>
+<section class="testimonials" id="testimonials">
+    <div class="particles-container" id="particles-bg"></div>
 
-    <a href="#hero" class="up-indicator">
+    <a class="up-indicator" href="#hero">
         <i class="fas fa-chevron-up"></i>
     </a>
 
@@ -743,20 +743,20 @@
             <button class="lightbox-next"><i class="fas fa-chevron-right"></i></button>
         </div>
         <div class="lightbox-image-container">
-            <img src="" alt="" class="lightbox-image">
+            <img alt="" class="lightbox-image" src="">
         </div>
         <div class="lightbox-caption"></div>
         <div class="lightbox-counter"></div>
     </div>
 </div>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r134/three.min.js" defer></script>
-<script src="https://cdn.jsdelivr.net/npm/vanta@latest/dist/vanta.fog.min.js" defer></script>
-<script src="js/language.js" defer></script>
-<script src="js/theme.js" defer></script>
-<script src="js/portfolio.js" defer></script>
-<script src="js/testimonials.js" defer></script>
-<script src="js/skills.js" defer></script>
-<script src="js/main.js" defer></script>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r134/three.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/vanta@latest/dist/vanta.fog.min.js"></script>
+<script defer src="js/language.js"></script>
+<script defer src="js/theme.js"></script>
+<script defer src="js/portfolio.js"></script>
+<script defer src="js/testimonials.js"></script>
+<script defer src="js/skills.js"></script>
+<script defer src="js/main.js"></script>
 </body>
 </html>

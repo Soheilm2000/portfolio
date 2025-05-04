@@ -62,8 +62,7 @@ const translations = {
         // Footer
         'all_rights_reserved': 'All rights reserved.',
         'designed_with_love': 'Designed and developed with'
-    },
-    fa: {
+    }, fa: {
         // Header & Navigation
         'portfolio': 'نمونه کار',
         'work': 'کارها',
