@@ -1,0 +1,800 @@
+/* Skills Section Styles */
+
+.skills {
+    position: relative;
+    overflow: hidden;
+    background: radial-gradient(ellipse at center, rgba(30, 30, 30, 0.2) 0%, rgba(10, 10, 10, 0.6) 100%);
+}
+
+body:not(.dark-mode) .skills {
+    background: radial-gradient(ellipse at center, rgba(240, 240, 240, 0.4) 0%, rgba(220, 220, 220, 0.8) 100%);
+}
+
+.skills-grid-wrapper {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem 0;
+    position: relative;
+    z-index: 3;
+}
+
+.lines {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 100%;
+    margin: auto;
+    width: 100vw;
+    z-index: 0;
+}
+
+.line {
+    position: absolute;
+    width: 1px;
+    height: 100%;
+    top: 0;
+    background: rgba(255, 255, 255, 0.05);
+    overflow: hidden;
+    transition: all 0.3s ease;
+}
+
+.line:nth-child(1) {
+    left: calc(100% * 1 / 8);
+}
+
+.line:nth-child(2) {
+    left: calc(100% * 2 / 8);
+}
+
+.line:nth-child(3) {
+    left: calc(100% * 3 / 8);
+}
+
+.line:nth-child(4) {
+    left: calc(100% * 4 / 8);
+}
+
+.line:nth-child(5) {
+    left: calc(100% * 5 / 8);
+}
+
+.line:nth-child(6) {
+    left: calc(100% * 6 / 8);
+}
+
+.line:nth-child(7) {
+    left: calc(100% * 7 / 8);
+}
+
+.line.active {
+    /* box-shadow: 0 0 1px currentColor, 0 0 1px currentColor; */
+    width: 1px;
+}
+
+.particle {
+    position: absolute;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    top: -10px;
+    left: -4px;
+    animation: particleFlow 5s linear infinite;
+    box-shadow: 0 0 15px currentColor, 0 0 5px currentColor;
+    filter: blur(1px);
+    z-index: 2;
+}
+
+.particle::after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 80px;
+    top: -80px;
+    left: 0;
+    background: linear-gradient(to top, currentColor, transparent);
+    opacity: 0.5;
+    filter: blur(3px);
+    z-index: 1;
+}
+
+.particle::before {
+    content: '';
+    position: absolute;
+    width: 3px;
+    height: 40px;
+    top: -40px;
+    left: 3px;
+    background: linear-gradient(to top, currentColor, transparent);
+    opacity: 0.7;
+    z-index: 1;
+}
+
+.line:nth-child(1) .particle {
+    background-color: #3498db;
+    color: #3498db;
+    animation-duration: 7s;
+    animation-delay: 0s;
+    filter: brightness(1.5) blur(1px);
+}
+
+.line:nth-child(2) .particle {
+    background-color: #e74c3c;
+    color: #e74c3c;
+    animation-duration: 5s;
+    animation-delay: 1s;
+    filter: brightness(1.5) blur(1px);
+}
+
+.line:nth-child(3) .particle {
+    background-color: #2ecc71;
+    color: #2ecc71;
+    animation-duration: 6s;
+    animation-delay: 2s;
+    filter: brightness(1.5) blur(1px);
+}
+
+.line:nth-child(4) .particle {
+    background-color: #f39c12;
+    color: #f39c12;
+    animation-duration: 8s;
+    animation-delay: 0.5s;
+    filter: brightness(1.5) blur(1px);
+}
+
+.line:nth-child(5) .particle {
+    background-color: #9b59b6;
+    color: #9b59b6;
+    animation-duration: 7.5s;
+    animation-delay: 1.5s;
+    filter: brightness(1.5) blur(1px);
+}
+
+.line:nth-child(6) .particle {
+    background-color: #1abc9c;
+    color: #1abc9c;
+    animation-duration: 6.8s;
+    animation-delay: 0.7s;
+    filter: brightness(1.5) blur(1px);
+}
+
+.line:nth-child(7) .particle {
+    background-color: #f1c40f;
+    color: #f1c40f;
+    animation-duration: 7.2s;
+    animation-delay: 1.2s;
+    filter: brightness(1.5) blur(1px);
+}
+
+@keyframes particleFlow {
+    0% {
+        top: -10px;
+        opacity: 0;
+        transform: translateY(0) scale(0.8);
+    }
+    10% {
+        opacity: 1;
+        transform: translateY(10px) scale(1);
+    }
+    90% {
+        opacity: 1;
+        transform: translateY(calc(100vh - 50px)) scale(1);
+    }
+    100% {
+        top: 110%;
+        opacity: 0;
+        transform: translateY(calc(100vh)) scale(0.8);
+    }
+}
+
+body:not(.dark-mode) .line {
+    background: rgba(0, 0, 0, 0.05);
+}
+
+body:not(.dark-mode) .line::after {
+    background: linear-gradient(to bottom, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.5) 75%, rgba(0, 0, 0, 0.7) 100%);
+}
+
+body:not(.dark-mode) .line:nth-child(1)::after {
+    background: linear-gradient(to bottom, rgba(255, 0, 0, 0) 0%, rgba(255, 0, 0, 0.5) 75%, rgba(255, 0, 0, 0.7) 100%);
+}
+
+body:not(.dark-mode) .line:nth-child(2)::after {
+    background: linear-gradient(to bottom, rgba(255, 127, 0, 0) 0%, rgba(255, 127, 0, 0.5) 75%, rgba(255, 127, 0, 0.7) 100%);
+}
+
+body:not(.dark-mode) .line:nth-child(3)::after {
+    background: linear-gradient(to bottom, rgba(255, 255, 0, 0) 0%, rgba(255, 255, 0, 0.5) 75%, rgba(255, 255, 0, 0.7) 100%);
+}
+
+body:not(.dark-mode) .line:nth-child(4)::after {
+    background: linear-gradient(to bottom, rgba(0, 255, 0, 0) 0%, rgba(0, 255, 0, 0.5) 75%, rgba(0, 255, 0, 0.7) 100%);
+}
+
+body:not(.dark-mode) .line:nth-child(5)::after {
+    background: linear-gradient(to bottom, rgba(0, 0, 255, 0) 0%, rgba(0, 0, 255, 0.5) 75%, rgba(0, 0, 255, 0.7) 100%);
+}
+
+body:not(.dark-mode) .line:nth-child(6)::after {
+    background: linear-gradient(to bottom, rgba(75, 0, 130, 0) 0%, rgba(75, 0, 130, 0.5) 75%, rgba(75, 0, 130, 0.7) 100%);
+}
+
+body:not(.dark-mode) .line:nth-child(7)::after {
+    background: linear-gradient(to bottom, rgba(143, 0, 255, 0) 0%, rgba(143, 0, 255, 0.5) 75%, rgba(143, 0, 255, 0.7) 100%);
+}
+
+.skills h2,
+.skills .section-intro {
+    color: #fff;
+    position: relative;
+    z-index: 3;
+}
+
+body:not(.dark-mode) .skills h2,
+body:not(.dark-mode) .skills .section-intro {
+    color: #1a1a1a;
+}
+
+.skills-grid-heading {
+    font-size: 2.5rem;
+    text-align: center;
+    margin-bottom: 3rem;
+    font-weight: 700;
+    color: #fff;
+    position: relative;
+    z-index: 3;
+}
+
+body:not(.dark-mode) .skills-grid-heading {
+    color: #1a1a1a;
+}
+
+.skills-grid {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+    gap: 24px;
+    max-width: 900px;
+    margin: 0 auto;
+    justify-content: center;
+    position: relative;
+    z-index: 3;
+}
+
+.skills-grid .skill-item {
+    aspect-ratio: 1/1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    border-radius: 24px;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(3px);
+    -webkit-backdrop-filter: blur(3px);
+    border: 1px solid rgba(255, 255, 255, 0.2);  /* Slightly more visible border */
+    box-shadow: 0 12px 32px rgba(28, 28, 28, 0.15);  /* Deeper shadow with more opacity */
+    transition: all 0.3s ease;
+    cursor: pointer;
+    overflow: hidden;
+    opacity: 0;
+    transform-style: preserve-3d;
+    perspective: 1000px;
+    animation: fadeInUp 0.6s forwards;
+    z-index: 3;
+}
+
+body.dark-mode .skills-grid .skill-item {
+    background: rgba(20, 20, 20, 0.1);
+    color: white;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+body:not(.dark-mode) .skills-grid .skill-item {
+    background: rgba(255, 255, 255, 0.1);
+    color: black;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.skills-grid .skill-icon {
+    width: 80px;
+    height: 80px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    transition: all 0.3s ease;
+    padding: 16px;
+    will-change: transform;
+    transition: transform 0.2s ease-out;
+}
+
+.skills-grid .skill-icon img {
+    width: 52px;
+    height: 52px;
+    object-fit: contain;
+    transition: all 0.3s ease;
+}
+
+.skills-grid .skill-item span {
+    position: absolute;
+    bottom: 10px;
+    left: 0;
+    width: 100%;
+    text-align: center;
+    font-size: 12px;
+    font-weight: 500;
+    color: #fff;
+    opacity: 0;
+    transform: translateY(10px);
+    transition: all 0.3s ease;
+}
+
+body:not(.dark-mode) .skills-grid .skill-item span {
+    color: #1a1a1a;
+}
+
+.skills-grid .skill-item:hover span {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.skills-grid .skill-item:hover .skill-icon {
+    transform: translateY(-8px);
+}
+
+.skills-grid .skill-item:hover {
+    transform: translateY(-5px) scale(1.05);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15), 0 5px 15px rgba(0, 0, 0, 0.08);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(6px);
+}
+
+/* Empty grid cells */
+.skills-grid .empty-cell {
+    aspect-ratio: 1/1;
+    border-radius: 16px;
+    background-color: transparent;
+    border: 1px solid rgba(82, 82, 82, 0.1);
+}
+
+body:not(.dark-mode) .skills-grid .empty-cell {
+    border: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+/* Media queries for responsive grid */
+@media (max-width: 992px) {
+    .skills-grid {
+        grid-template-columns: repeat(5, 1fr);
+        grid-template-rows: auto;
+        gap: 20px;
+        max-width: 700px;
+    }
+
+    .skills-grid .skill-icon {
+        width: 60px;
+        height: 60px;
+        padding: 12px;
+    }
+
+    .skills-grid .skill-icon img {
+        width: 40px;
+        height: 40px;
+    }
+
+    /* Keep lines more visible on medium screens */
+    .lines {
+        width: 95vw;
+    }
+
+    .skills-grid-heading {
+        font-size: 2.2rem;
+        margin-bottom: 2.5rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .skills-grid-wrapper {
+        padding: 1.5rem 1rem;
+    }
+
+    .skills-grid-heading {
+        font-size: 1.8rem;
+        margin-bottom: 2rem;
+        padding: 0 15px;
+    }
+
+    .skills-grid {
+        grid-template-columns: repeat(4, 1fr);
+        grid-template-rows: auto;
+        gap: 18px;
+        max-width: 600px;
+        padding: 0 15px;
+    }
+
+    .skills-grid .skill-icon {
+        width: 50px;
+        height: 50px;
+    }
+
+    .skills-grid .skill-icon img {
+        width: 32px;
+        height: 32px;
+    }
+
+    /* Adjust line positions for smaller screens */
+    .lines {
+        width: 100vw;
+    }
+
+    .line:nth-child(1) {
+        left: 10%;
+    }
+
+    .line:nth-child(2) {
+        left: 25%;
+    }
+
+    .line:nth-child(3) {
+        left: 40%;
+    }
+
+    .line:nth-child(4) {
+        left: 55%;
+    }
+
+    .line:nth-child(5) {
+        left: 70%;
+    }
+
+    .line:nth-child(6) {
+        left: 85%;
+    }
+
+    .line:nth-child(7) {
+        left: 95%;
+    }
+}
+
+@media (max-width: 576px) {
+    .skills-grid {
+        grid-template-columns: repeat(4, 1fr);
+        grid-template-rows: auto;
+        gap: 12px;
+        padding: 0 10px;
+        max-width: 450px;
+    }
+
+    .skills-grid .skill-icon {
+        width: 42px;
+        height: 42px;
+        padding: 8px;
+    }
+
+    .skills-grid .skill-icon img {
+        width: 26px;
+        height: 26px;
+    }
+
+    /* Hide flutter skill on mobile */
+    .skill-item.flutter {
+        display: none;
+    }
+
+    /* Hide lines 4-7 in mobile portrait mode */
+    .line:nth-child(n+4) {
+        display: none;
+    }
+
+    /* Adjust the remaining 3 lines to be evenly spaced */
+    .line:nth-child(1) {
+        left: 20%;
+    }
+
+    .line:nth-child(2) {
+        left: 50%;
+    }
+
+    .line:nth-child(3) {
+        left: 80%;
+    }
+}
+
+@media (max-width: 480px) {
+    .skills-grid-heading {
+        font-size: 1.6rem;
+        margin-bottom: 1.5rem;
+    }
+
+    .skills-grid {
+        grid-template-columns: repeat(4, 1fr);
+        grid-template-rows: auto;
+        gap: 10px;
+        padding: 0 6px;
+        max-width: 360px;
+    }
+
+    .skills-grid .skill-icon {
+        width: 36px;
+        height: 36px;
+        padding: 6px;
+    }
+
+    .skills-grid .skill-icon img {
+        width: 22px;
+        height: 22px;
+    }
+
+    /* Further adjust lines for mobile */
+    .line:nth-child(1) {
+        left: 5%;
+    }
+
+    .line:nth-child(2) {
+        left: 20%;
+    }
+
+    .line:nth-child(3) {
+        left: 35%;
+    }
+
+    .line:nth-child(4) {
+        left: 50%;
+    }
+
+    .line:nth-child(5) {
+        left: 65%;
+    }
+
+    .line:nth-child(6) {
+        left: 80%;
+    }
+
+    .line:nth-child(7) {
+        left: 95%;
+    }
+
+    /* Adjust hover behavior on small screens */
+    .skills-grid .skill-item:hover {
+        transform: translateY(-3px) scale(1.03);
+    }
+
+    .skills-grid .skill-item:hover .skill-icon {
+        transform: translateY(-5px);
+    }
+}
+
+@media (max-width: 360px) {
+    .skills-grid {
+        grid-template-columns: repeat(4, 1fr);
+        grid-template-rows: auto;
+        gap: 8px;
+        padding: 0 5px;
+    }
+
+    .skills-grid .skill-icon {
+        width: 32px;
+        height: 32px;
+        padding: 5px;
+    }
+
+    .skills-grid .skill-icon img {
+        width: 20px;
+        height: 20px;
+    }
+}
+
+/* Colored hover effects for skills */
+.skill-item.html:hover {
+    box-shadow: 0 8px 25px rgba(228, 77, 38, 0.25);
+    border-color: rgba(228, 77, 38, 0.3);
+}
+
+.skill-item.css:hover {
+    box-shadow: 0 8px 25px rgba(38, 77, 228, 0.25);
+    border-color: rgba(38, 77, 228, 0.3);
+}
+
+.skill-item.js:hover {
+    box-shadow: 0 8px 25px rgba(247, 223, 30, 0.25);
+    border-color: rgba(247, 223, 30, 0.3);
+}
+
+.skill-item.react:hover {
+    box-shadow: 0 8px 25px rgba(97, 218, 251, 0.25);
+    border-color: rgba(97, 218, 251, 0.3);
+}
+
+.skill-item.vue:hover {
+    box-shadow: 0 8px 25px rgba(79, 192, 141, 0.25);
+    border-color: rgba(79, 192, 141, 0.3);
+}
+
+.skill-item.angular:hover {
+    box-shadow: 0 8px 25px rgba(221, 0, 49, 0.25);
+    border-color: rgba(221, 0, 49, 0.3);
+}
+
+.skill-item.node:hover {
+    box-shadow: 0 8px 25px rgba(51, 153, 51, 0.25);
+    border-color: rgba(51, 153, 51, 0.3);
+}
+
+.skill-item.php:hover {
+    box-shadow: 0 8px 25px rgba(119, 123, 179, 0.25);
+    border-color: rgba(119, 123, 179, 0.3);
+}
+
+.skill-item.wordpress:hover {
+    box-shadow: 0 8px 25px rgba(33, 117, 155, 0.25);
+    border-color: rgba(33, 117, 155, 0.3);
+}
+
+.skill-item.elementor:hover {
+    box-shadow: 0 8px 25px rgba(146, 0, 59, 0.25);
+    border-color: rgba(146, 0, 59, 0.3);
+}
+
+.skill-item.typescript:hover {
+    box-shadow: 0 8px 25px rgba(49, 120, 198, 0.25);
+    border-color: rgba(49, 120, 198, 0.3);
+}
+
+.skill-item.mongo:hover {
+    box-shadow: 0 8px 25px rgba(71, 162, 72, 0.25);
+    border-color: rgba(71, 162, 72, 0.3);
+}
+
+.skill-item.sql:hover {
+    box-shadow: 0 8px 25px rgba(68, 121, 161, 0.25);
+    border-color: rgba(68, 121, 161, 0.3);
+}
+
+.skill-item.git:hover {
+    box-shadow: 0 8px 25px rgba(240, 80, 50, 0.25);
+    border-color: rgba(240, 80, 50, 0.3);
+}
+
+.skill-item.kotlin:hover {
+    box-shadow: 0 8px 25px rgba(127, 82, 255, 0.25);
+    border-color: rgba(127, 82, 255, 0.3);
+}
+
+.skill-item.android:hover {
+    box-shadow: 0 8px 25px rgba(61, 220, 132, 0.25);
+    border-color: rgba(61, 220, 132, 0.3);
+}
+
+.skill-item.sass:hover {
+    box-shadow: 0 8px 25px rgba(204, 102, 153, 0.25);
+    border-color: rgba(204, 102, 153, 0.3);
+}
+
+.skill-item.docker:hover {
+    box-shadow: 0 8px 25px rgba(36, 150, 237, 0.25);
+    border-color: rgba(36, 150, 237, 0.3);
+}
+
+.skill-item.python:hover {
+    box-shadow: 0 8px 25px rgba(55, 118, 171, 0.25);
+    border-color: rgba(55, 118, 171, 0.3);
+}
+
+.skill-item.aws:hover {
+    box-shadow: 0 8px 25px rgba(255, 153, 0, 0.25);
+    border-color: rgba(255, 153, 0, 0.3);
+}
+
+.skill-item.flutter:hover {
+    box-shadow: 0 8px 25px rgba(69, 208, 240, 0.25);
+    border-color: rgba(69, 208, 240, 0.3);
+}
+
+/* Entrance animation */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.skills-grid .skill-item {
+    opacity: 0;
+    animation: fadeInUp 0.6s forwards;
+}
+
+/* Generate animation delays for each skill item */
+.skills-grid .skill-item:nth-child(1) {
+    animation-delay: 0.05s;
+}
+
+.skills-grid .skill-item:nth-child(2) {
+    animation-delay: 0.1s;
+}
+
+.skills-grid .skill-item:nth-child(3) {
+    animation-delay: 0.15s;
+}
+
+.skills-grid .skill-item:nth-child(4) {
+    animation-delay: 0.2s;
+}
+
+.skills-grid .skill-item:nth-child(5) {
+    animation-delay: 0.25s;
+}
+
+.skills-grid .skill-item:nth-child(6) {
+    animation-delay: 0.3s;
+}
+
+.skills-grid .skill-item:nth-child(7) {
+    animation-delay: 0.35s;
+}
+
+.skills-grid .skill-item:nth-child(8) {
+    animation-delay: 0.4s;
+}
+
+.skills-grid .skill-item:nth-child(9) {
+    animation-delay: 0.45s;
+}
+
+.skills-grid .skill-item:nth-child(10) {
+    animation-delay: 0.5s;
+}
+
+.skills-grid .skill-item:nth-child(11) {
+    animation-delay: 0.55s;
+}
+
+.skills-grid .skill-item:nth-child(12) {
+    animation-delay: 0.6s;
+}
+
+.skills-grid .skill-item:nth-child(13) {
+    animation-delay: 0.65s;
+}
+
+.skills-grid .skill-item:nth-child(14) {
+    animation-delay: 0.7s;
+}
+
+.skills-grid .skill-item:nth-child(15) {
+    animation-delay: 0.75s;
+}
+
+.skills-grid .skill-item:nth-child(16) {
+    animation-delay: 0.8s;
+}
+
+.skills-grid .skill-item:nth-child(17) {
+    animation-delay: 0.85s;
+}
+
+.skills-grid .skill-item:nth-child(18) {
+    animation-delay: 0.9s;
+}
+
+.skills-grid .skill-item:nth-child(19) {
+    animation-delay: 0.95s;
+}
+
+.skills-grid .skill-item:nth-child(20) {
+    animation-delay: 1s;
+}
+
+/* Mouse movement effect */
+.skills-grid .skill-item {
+    transform-style: preserve-3d;
+    perspective: 1000px;
+}
+
+.skills-grid .skill-icon {
+    will-change: transform;
+    transition: transform 0.2s ease-out;
+}

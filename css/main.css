@@ -1,0 +1,18 @@
+/* Main CSS File - Imports all modules */
+
+/* Critical CSS first - these are needed for initial rendering */
+@import 'variables.css';
+@import 'layout.css';
+@import 'header.css';
+@import 'hero.css';
+
+/* Secondary CSS - these can load after critical content is visible */
+@import 'animations.css';
+@import 'portfolio.css';
+@import 'skills-section.css';
+@import 'process-testimonials.css';
+
+/* Non-critical CSS - loaded last */
+@import 'language-transition.css';
+@import 'theme-transition.css';
+@import 'rtl.css';

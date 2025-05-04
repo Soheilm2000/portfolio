@@ -1,0 +1,440 @@
+/* RTL Support for Persian/Farsi Language */
+
+/* Set font for Persian text */
+@font-face {
+    font-family: 'Vazirmatn';
+    src: url('https://cdn.jsdelivr.net/gh/rastikerdar/vazirmatn@v33.003/fonts/webfonts/Vazirmatn-Regular.woff2') format('woff2');
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Vazirmatn';
+    src: url('https://cdn.jsdelivr.net/gh/rastikerdar/vazirmatn@v33.003/fonts/webfonts/Vazirmatn-Bold.woff2') format('woff2');
+    font-weight: 700;
+    font-style: normal;
+    font-display: swap;
+}
+
+/* RTL Body Styles */
+body.rtl {
+    direction: rtl;
+    text-align: right;
+    font-family: 'Vazirmatn', 'Inter', sans-serif;
+}
+
+/* Keep centered elements centered regardless of text direction */
+body.rtl .text-center,
+body.rtl h2,
+body.rtl .section-intro,
+body.rtl footer,
+body.rtl .testimonial-title,
+body.rtl .testimonial-subtitle,
+body.rtl .testimonial-dots,
+body.rtl .testimonial-controls {
+    text-align: center;
+}
+
+/* Header and Navigation */
+body.rtl header .container nav .logo {
+    margin-left: 0;
+    margin-right: 0;
+}
+
+body.rtl .nav-links {
+    margin-left: auto;
+    margin-right: auto;
+    display: flex;
+    justify-content: center;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+body.rtl .nav-links li {
+    margin-right: 0;
+    margin-left: 2rem;
+}
+
+body.rtl .theme-toggle {
+    margin-left: 0;
+    margin-right: 2rem;
+}
+
+body.rtl .hamburger {
+    right: auto;
+    left: 1.5rem;
+}
+
+/* Section Indicator */
+body.rtl .section-indicator {
+    left: auto;
+    right: 2rem;
+}
+
+body.rtl .section-indicator .dot .label {
+    left: auto;
+    right: 2rem;
+}
+
+/* Hero Section */
+body.rtl .hero-content {
+    text-align: right;
+}
+
+body.rtl .hero-content h1 {
+    display: inline-block;
+}
+
+/* Keep scroll indicator centered */
+body.rtl .scroll-indicator {
+    left: 50%;
+    right: auto;
+    transform: translateX(-50%);
+}
+
+/* In RTL mode, we need to rotate differently to still point down */
+body.rtl .scroll-indicator-arrow {
+    transform: rotate(45deg);
+}
+
+/* Portfolio Section */
+body.rtl .portfolio-header {
+    text-align: center;
+}
+
+body.rtl .portfolio-header h2,
+body.rtl .portfolio-header p {
+    text-align: center;
+}
+
+/* Keep portfolio item titles centered in both LTR and RTL */
+body.rtl .portfolio-panel:nth-child(even) .portfolio-header,
+body.rtl .portfolio-panel:nth-child(odd) .portfolio-header {
+    text-align: center;
+}
+
+/* Ensure centered portfolio panels stay centered */
+@media (min-width: 992px) {
+    body.rtl .portfolio-panel[data-centered="true"] .portfolio-header,
+    body.rtl .portfolio-panel.centered .portfolio-header {
+        text-align: center;
+    }
+}
+
+/* Ensure all portfolio content is centered properly */
+body.rtl .portfolio-showcase {
+    text-align: center;
+}
+
+/* Override any specific portfolio styling for RTL */
+body.rtl .portfolio-panel .portfolio-header h2,
+body.rtl .portfolio-panel .portfolio-header p {
+    text-align: center !important;
+}
+
+/* For mobile view, all portfolio headers should be centered */
+@media (max-width: 991px) {
+    body.rtl .portfolio-header {
+        text-align: center;
+    }
+}
+
+/* Skills Section */
+body.rtl .skills .container h2,
+body.rtl .skills .container p.section-intro {
+    text-align: center;
+}
+
+body.rtl .skill-item {
+    text-align: center;
+}
+
+body.rtl .skills-grid .skill-item span {
+    text-align: center;
+    display: block;
+    margin-top: 10px;
+}
+
+/* Process Section */
+body.rtl .process .container h2,
+body.rtl .process .container p.section-intro {
+    text-align: center;
+}
+
+body.rtl .process-steps {
+    flex-direction: row-reverse;
+}
+
+body.rtl .process-step .step-number {
+    direction: ltr;
+}
+
+/* Testimonials Section */
+body.rtl .testimonial-title,
+body.rtl .testimonial-subtitle,
+body.rtl .testimonial-quote p,
+body.rtl .testimonial-author {
+    text-align: center;
+}
+
+body.rtl .testimonial-card {
+    text-align: center;
+}
+
+body.rtl .testimonial-quote {
+    text-align: center;
+}
+
+body.rtl .testimonial-author strong,
+body.rtl .testimonial-author span {
+    text-align: center;
+    display: block;
+}
+
+body.rtl .testimonial-controls {
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    direction: ltr; /* Keeps the prev/next buttons in original order */
+}
+
+body.rtl .testimonial-dots {
+    display: flex;
+    justify-content: center;
+}
+
+/* Lightbox */
+body.rtl .lightbox-controls {
+    direction: ltr;
+}
+
+body.rtl .lightbox-prev i {
+    transform: rotate(180deg);
+}
+
+body.rtl .lightbox-next i {
+    transform: rotate(180deg);
+}
+
+/* Language Switcher */
+.lang-switch {
+    display: inline-block;
+    cursor: pointer;
+    padding: 0.5rem 1rem;
+    background-color: rgba(108, 99, 255, 0.1);
+    border-radius: 4px;
+    transition: all 0.3s ease;
+    margin-left: 1rem;
+    font-weight: 500;
+}
+
+body.rtl .lang-switch {
+    margin-left: 0;
+    margin-right: 1rem;
+}
+
+.lang-switch:hover {
+    background-color: rgba(108, 99, 255, 0.2);
+}
+
+/* RTL support for the minimal language switch */
+body.rtl .right-controls .lang-switch-container {
+    margin-right: 0.5rem;
+    padding-right: 0.5rem;
+    margin-left: 0;
+    padding-left: 0;
+}
+
+body.rtl .right-controls .lang-switch-container:before {
+    left: auto;
+    right: 0;
+}
+
+/* Fix language code button in RTL */
+body.rtl .minimal-lang-switch {
+    direction: ltr;
+}
+
+/* Fix language code underline animation in RTL */
+body.rtl .minimal-lang-switch .lang-code::after {
+    left: auto;
+    right: 0;
+    transform-origin: left;
+}
+
+body.rtl .minimal-lang-switch:hover .lang-code::after {
+    transform: scaleX(1);
+    transform-origin: right;
+}
+
+/* Mobile styles for language switcher */
+@media (max-width: 768px) {
+    .lang-switch {
+        margin: 1rem 0;
+        display: block;
+        text-align: center;
+    }
+
+    body.rtl .lang-switch-container {
+        margin-left: 0;
+        margin-right: 1rem;
+    }
+
+    body.rtl .lang-switch {
+        margin: 1rem 0;
+    }
+
+    /* Fix mobile menu alignment in RTL mode */
+    body.rtl .nav-links {
+        left: 0;
+        right: 0;
+        text-align: center;
+    }
+
+    body.rtl .nav-links li {
+        margin: 0.5rem 0;
+    }
+
+    body.rtl .nav-links li a {
+        display: block;
+        width: 100%;
+        text-align: center;
+    }
+}
+
+/* Right controls container */
+body.rtl .right-controls {
+    margin-left: 0;
+    margin-right: auto;
+    display: flex;
+    flex-direction: row;
+}
+
+/* Set explicit order for controls in RTL mode */
+body.rtl .right-controls .theme-toggle {
+    order: 2; /* Second item */
+}
+
+body.rtl .right-controls .lang-switch-container {
+    order: 1; /* First item (appears before theme-toggle) */
+}
+
+/* Fix theme toggle in RTL mode */
+body.rtl .theme-toggle {
+    direction: ltr; /* Keep the toggle direction consistent */
+}
+
+/* Ensure the sun-moon toggle moves correctly in RTL */
+body.rtl .switch input:checked ~ .sun-moon {
+    left: calc(100% - 2rem); /* Keep this the same as LTR */
+    transform: rotate(-25deg); /* Keep rotation consistent */
+}
+
+/* Fix sun-moon toggle direction */
+body.rtl .sun-moon {
+    direction: ltr;
+}
+
+/* Fix stars and other elements inside theme toggle */
+body.rtl .background .stars1,
+body.rtl .background .stars2,
+body.rtl .sun-moon .dots,
+body.rtl .sun-moon .dots:after,
+body.rtl .sun-moon .dots:before {
+    direction: ltr;
+}
+
+/* Fix language code button in RTL */
+body.rtl .minimal-lang-switch {
+    direction: ltr;
+}
+
+/* Fix spacing for RTL mode */
+body.rtl .process-step {
+    text-align: right;
+}
+
+/* Ensure centered elements remain centered */
+body.rtl h2,
+body.rtl .section-intro,
+body.rtl .testimonial-dots,
+body.rtl .testimonial-controls,
+body.rtl .hero-cta,
+body.rtl .modern-btn-wrapper,
+body.rtl .skill-item span,
+body.rtl .section-indicator .dot .label,
+body.rtl footer p,
+body.rtl .lightbox-caption,
+body.rtl .lightbox-counter {
+    text-align: center;
+}
+
+/* Ensure centered button in hero section remains centered in RTL mode */
+@media (max-width: 992px) {
+    body.rtl .hero-content {
+        text-align: center;
+    }
+
+    body.rtl .hero-content p {
+        text-align: center;
+    }
+
+    body.rtl .hero-cta {
+        justify-content: center;
+    }
+}
+
+/* Footer adjustments */
+body.rtl footer .container {
+    flex-direction: row-reverse;
+}
+
+body.rtl footer .fa-heart {
+    transform: none;
+}
+
+/* Ensure nav-links are centered in RTL mobile mode */
+@media (max-width: 768px) {
+    body.rtl .nav-links {
+        position: static;
+        transform: none;
+        margin-right: 0;
+    }
+
+    body.rtl .nav-links.active {
+        justify-content: center;
+        left: 0;
+        transform: none;
+        right: 0;
+        width: 100%;
+    }
+
+    body.rtl .nav-links.active li {
+        margin-left: 0;
+    }
+}
+
+body.rtl .right-controls {
+    flex-direction: row-reverse;
+}
+
+/* Fix mobile controls in RTL */
+@media (max-width: 768px) {
+    body.rtl .right-controls {
+        gap: 0.75rem;
+        margin-right: 0; /* Reset margin for mobile layout */
+    }
+
+    body.rtl .right-controls .lang-switch-container {
+        margin-right: 0;
+        padding-right: 0;
+    }
+
+    /* Keep the order in mobile view */
+    body.rtl .right-controls .theme-toggle,
+    body.rtl .right-controls .lang-switch-container {
+        order: initial; /* Reset order on mobile */
+    }
+}

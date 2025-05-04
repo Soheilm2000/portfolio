@@ -1,0 +1,319 @@
+/* Process and Testimonials Section Styles */
+
+/* Process Section */
+.process {
+    background-color: var(--secondary-color);
+    transition: var(--section-transition);
+    padding: 0;
+}
+
+.process .container {
+    padding: 2rem;
+    max-height: 100vh;
+    overflow-y: auto;
+    width: 90%;
+    max-width: 1200px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.process-steps {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+    margin-top: 3rem;
+}
+
+.process-step {
+    background-color: var(--background-light);
+    border-radius: 10px;
+    padding: 2rem;
+    box-shadow: var(--shadow);
+    position: relative;
+    transition: var(--transition);
+}
+
+body.dark-mode .process-step {
+    background-color: #212121;
+}
+
+.step-number {
+    position: absolute;
+    top: -20px;
+    right: 20px;
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--primary-color);
+    opacity: 0.3;
+}
+
+.process-step:hover {
+    transform: translateY(-10px);
+}
+
+/* Testimonials Section */
+.testimonials {
+    height: 100vh;
+    width: 100%;
+    position: fixed;
+    overflow: hidden;
+    background-color: black;
+    transition: background-color 0.3s ease;
+}
+
+body.dark-mode .testimonials {
+    background-color: black;
+}
+
+body:not(.dark-mode) .testimonials {
+    background-color: white;
+}
+
+/* Particles background container */
+.particles-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+}
+
+/* Card wrapper for centering */
+.testimonial-card-wrapper {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    width: 100%;
+    padding: 20px;
+}
+
+/* Glass card effect */
+.testimonial-card {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(3px);
+    border-radius: 20px;
+    padding: 40px;
+    width: 90%;
+    max-width: 800px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    text-align: center;
+    transition: all 0.3s ease;
+}
+
+body.dark-mode .testimonial-card {
+    background: rgba(20, 20, 20, 0.1);
+    color: white;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+body:not(.dark-mode) .testimonial-card {
+    background: rgba(255, 255, 255, 0.1);
+    color: black;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.testimonial-title {
+    font-size: 2.5rem;
+    margin-bottom: 10px;
+    background: linear-gradient(45deg, var(--primary-color), #8a2be2);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    transition: all 0.3s ease;
+}
+
+.testimonial-subtitle {
+    font-size: 1.2rem;
+    margin-bottom: 40px;
+    opacity: 0.8;
+}
+
+.testimonial-content {
+    position: relative;
+    min-height: 200px;
+    margin-bottom: 30px;
+}
+
+.testimonial-quote {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: all 0.5s ease;
+    visibility: hidden;
+}
+
+.testimonial-quote.active {
+    opacity: 1;
+    transform: translateY(0);
+    visibility: visible;
+}
+
+.testimonial-quote p {
+    font-size: 1.2rem;
+    line-height: 1.8;
+    font-style: italic;
+    margin-bottom: 20px;
+    position: relative;
+}
+
+.testimonial-quote p:before,
+.testimonial-quote p:after {
+    content: '"';
+    font-size: 2rem;
+    color: var(--primary-color);
+}
+
+.testimonial-author {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 20px;
+}
+
+.testimonial-author strong {
+    font-size: 1.1rem;
+    margin-bottom: 5px;
+}
+
+.testimonial-author span {
+    font-size: 0.9rem;
+    opacity: 0.7;
+}
+
+.testimonial-controls {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+}
+
+.prev-btn, .next-btn {
+    background: rgba(255, 255, 255, 0.2);
+    border: none;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    color: inherit;
+}
+
+.prev-btn:hover, .next-btn:hover {
+    background: var(--primary-color);
+    color: white;
+}
+
+.testimonial-dots {
+    display: flex;
+    gap: 10px;
+    margin: 0 20px;
+}
+
+.dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background-color: rgba(255, 255, 255, 0.3);
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+body.dark-mode .dot {
+    background-color: rgba(255, 255, 255, 0.3);
+}
+
+body:not(.dark-mode) .dot {
+    background-color: rgba(0, 0, 0, 0.3);
+}
+
+.dot.active {
+    background-color: var(--primary-color);
+    transform: scale(1.3);
+}
+
+/* Up indicator button */
+.up-indicator {
+    position: absolute;
+    bottom: 30px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 45px;
+    height: 45px;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    z-index: 10;
+    color: var(--primary-color);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.up-indicator:hover {
+    background: var(--primary-color);
+    color: white;
+    transform: translate(-50%, -5px);
+}
+
+body.dark-mode .up-indicator {
+    background: rgba(40, 40, 40, 0.6);
+    color: white;
+}
+
+/* Responsive styles */
+@media (max-width: 768px) {
+    .process-steps {
+        grid-template-columns: 1fr;
+    }
+
+    .testimonial-author {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+
+    .author-image {
+        margin-right: 0;
+        margin-bottom: 1rem;
+    }
+
+    .testimonials-slider {
+        padding: 0 1rem;
+    }
+}
+
+@media (max-width: 576px) {
+    .testimonial-item {
+        padding: 1.5rem;
+    }
+
+    .process-step {
+        padding: 1.5rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .testimonial-content {
+        font-size: 0.9rem;
+    }
+
+    .process .container,
+    .testimonials .container {
+        padding: 1.5rem;
+    }
+}
