@@ -564,6 +564,26 @@ body:not(.dark-mode) .skills-grid .empty-cell {
     }
 }
 
+@media (max-width: 576px) and (orientation: portrait) {
+    /* Hide lines 4-7 in mobile portrait mode */
+    .line:nth-child(n+4) {
+        display: none;
+    }
+
+    /* Center the remaining 3 lines */
+    .line:nth-child(1) {
+        left: 25%;
+    }
+
+    .line:nth-child(2) {
+        left: 50%;
+    }
+
+    .line:nth-child(3) {
+        left: 75%;
+    }
+}
+
 @media (max-width: 360px) {
     .skills-grid {
         grid-template-columns: repeat(4, 1fr);
