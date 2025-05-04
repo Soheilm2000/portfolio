@@ -539,6 +539,25 @@ body.dark-mode .modern-btn-wrapper:hover .glass-layer {
     .blob {
         opacity: 0.6;
     }
+
+    /* Hide scroll indicator on mobile */
+    .scroll-indicator {
+        display: none;
+    }
+
+    /* Allow more spacing for vertical layout */
+    .hero {
+        height: auto;
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        padding: 100px 0 40px;
+    }
+
+    .hero .container {
+        padding-bottom: 40px;
+    }
 }
 
 @media (max-width: 480px) {
@@ -552,10 +571,13 @@ body.dark-mode .modern-btn-wrapper:hover .glass-layer {
 
     .hero-cta {
         flex-direction: column;
+        position: relative;
+        margin-top: 1.5rem;
     }
 
     .hero-image {
-        max-width: 260px;
+        max-width: 250px;
+        margin-top: 1.5rem;
     }
 
     .modern-btn-wrapper {
@@ -565,5 +587,11 @@ body.dark-mode .modern-btn-wrapper:hover .glass-layer {
     .modern-btn-wrapper .btn {
         width: 100%;
         text-align: center;
+    }
+
+    /* Position the CTA at the bottom */
+    .hero .container {
+        position: relative;
+        padding-bottom: 80px;
     }
 }

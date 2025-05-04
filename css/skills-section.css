@@ -41,31 +41,31 @@ body:not(.dark-mode) .skills {
 }
 
 .line:nth-child(1) {
-    left: calc(100% * 1 / 8);
+    left: calc(50% - 42%);
 }
 
 .line:nth-child(2) {
-    left: calc(100% * 2 / 8);
+    left: calc(50% - 28%);
 }
 
 .line:nth-child(3) {
-    left: calc(100% * 3 / 8);
+    left: calc(50% - 14%);
 }
 
 .line:nth-child(4) {
-    left: calc(100% * 4 / 8);
+    left: 50%;
 }
 
 .line:nth-child(5) {
-    left: calc(100% * 5 / 8);
+    left: calc(50% + 14%);
 }
 
 .line:nth-child(6) {
-    left: calc(100% * 6 / 8);
+    left: calc(50% + 28%);
 }
 
 .line:nth-child(7) {
-    left: calc(100% * 7 / 8);
+    left: calc(50% + 42%);
 }
 
 .line.active {

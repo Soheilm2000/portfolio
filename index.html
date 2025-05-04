@@ -130,41 +130,68 @@
 </div>
 <header>
     <div class="container">
-        <nav>
-            <a class="logo" data-i18n="portfolio" href="#hero">Portfolio</a>
-            <ul class="nav-links">
+        <!-- Left Side: Logo (Right in RTL) -->
+        <a class="logo" data-i18n="portfolio" href="#hero">Portfolio</a>
+
+        <!-- Center: Navigation -->
+        <nav class="desktop-nav">
+            <ul>
                 <li><a data-i18n="work" href="#work">Work</a></li>
                 <li><a data-i18n="process" href="#process">Process</a></li>
                 <li><a data-i18n="skills" href="#skills">Skills</a></li>
                 <li><a data-i18n="testimonials" href="#testimonials">Testimonials</a></li>
             </ul>
-            <div class="right-controls">
-                <div class="theme-toggle">
-                    <div class="switch">
-                        <label for="toggle">
-                            <input class="toggle-switch" id="toggle" type="checkbox">
-                            <div class="sun-moon">
-                                <div class="dots"></div>
-                            </div>
-                            <div class="background">
-                                <div class="stars1"></div>
-                                <div class="stars2"></div>
-                            </div>
-                            <div class="fill"></div>
-                        </label>
-                    </div>
-                </div>
-                <div class="lang-switch-container">
-                    <button class="minimal-lang-switch"
-                            onclick="changeLanguage(currentLanguage === 'en' ? 'fa' : 'en');">
-                        <span class="lang-code" data-i18n="lang_code">EN</span>
-                    </button>
-                </div>
+        </nav>
+
+        <!-- Right Side: Controls (Left in RTL) -->
+        <div class="controls">
+            <!-- Theme Toggle -->
+            <div class="theme-toggle">
+                <input type="checkbox" id="theme-switch" class="toggle-input">
+                <label for="theme-switch" class="toggle-label">
+                    <span class="toggle-icon">🌙</span>
+                    <span class="toggle-icon">☀️</span>
+                </label>
             </div>
-            <div class="hamburger">
-                <span></span>
-                <span></span>
-                <span></span>
+
+            <!-- Language Switch -->
+            <button class="lang-switch" onclick="changeLanguage(currentLanguage === 'en' ? 'fa' : 'en');">
+                <span class="lang-code" data-i18n="lang_code">EN</span>
+            </button>
+        </div>
+
+        <!-- Hamburger Menu Button (mobile only) -->
+        <button class="hamburger" aria-label="Toggle Menu">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+    </div>
+
+    <!-- Mobile Navigation (initially hidden) -->
+    <div class="mobile-nav">
+        <nav>
+            <ul>
+                <li><a data-i18n="work" href="#work">Work</a></li>
+                <li><a data-i18n="process" href="#process">Process</a></li>
+                <li><a data-i18n="skills" href="#skills">Skills</a></li>
+                <li><a data-i18n="testimonials" href="#testimonials">Testimonials</a></li>
+            </ul>
+
+            <div class="controls">
+                <!-- Theme Toggle -->
+                <div class="theme-toggle">
+                    <input type="checkbox" id="theme-switch-mobile" class="toggle-input">
+                    <label for="theme-switch-mobile" class="toggle-label">
+                        <span class="toggle-icon">🌙</span>
+                        <span class="toggle-icon">☀️</span>
+                    </label>
+                </div>
+
+                <!-- Language Switch -->
+                <button class="lang-switch" onclick="changeLanguage(currentLanguage === 'en' ? 'fa' : 'en');">
+                    <span class="lang-code" data-i18n="lang_code">EN</span>
+                </button>
             </div>
         </nav>
     </div>

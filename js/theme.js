@@ -4,8 +4,12 @@
  */
 
 document.addEventListener('DOMContentLoaded', () => {
-    const themeToggle = document.getElementById('toggle');
+    const desktopToggle = document.getElementById('theme-switch');
+    const mobileToggle = document.getElementById('theme-switch-mobile');
     const themeOverlay = document.querySelector('.theme-transition-overlay');
+
+    // Check if toggles exist (might be handled in main.js)
+    if (!desktopToggle || !mobileToggle) return;
 
     // Check for saved theme preference or use device preference
     const prefersDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches;
@@ -14,43 +18,48 @@ document.addEventListener('DOMContentLoaded', () => {
     // Apply the saved theme or device preference
     if (savedTheme === 'dark' || (!savedTheme && prefersDarkMode)) {
         document.documentElement.setAttribute('data-theme', 'dark');
-        themeToggle.checked = true;
+        desktopToggle.checked = true;
+        mobileToggle.checked = true;
     } else {
         document.documentElement.setAttribute('data-theme', 'light');
-        themeToggle.checked = false;
+        desktopToggle.checked = false;
+        mobileToggle.checked = false;
     }
 
-    // Theme toggle function
-    themeToggle.addEventListener('change', () => {
-        if (themeToggle.checked) {
-            // Show transition overlay
-            themeOverlay.classList.add('visible');
+    // Theme toggle handler function
+    const handleThemeToggle = (isChecked) => {
+        // Show transition overlay
+        themeOverlay.classList.add('visible');
 
-            setTimeout(() => {
+        setTimeout(() => {
+            if (isChecked) {
                 // Switch to dark theme
                 document.documentElement.setAttribute('data-theme', 'dark');
                 localStorage.setItem('theme', 'dark');
-
-                // Hide transition overlay after theme is applied
-                setTimeout(() => {
-                    themeOverlay.classList.remove('visible');
-                }, 600);
-            }, 400);
-        } else {
-            // Show transition overlay
-            themeOverlay.classList.add('visible');
-
-            setTimeout(() => {
+                desktopToggle.checked = true;
+                mobileToggle.checked = true;
+            } else {
                 // Switch to light theme
                 document.documentElement.setAttribute('data-theme', 'light');
                 localStorage.setItem('theme', 'light');
+                desktopToggle.checked = false;
+                mobileToggle.checked = false;
+            }
 
-                // Hide transition overlay after theme is applied
-                setTimeout(() => {
-                    themeOverlay.classList.remove('visible');
-                }, 600);
-            }, 400);
-        }
+            // Hide transition overlay after theme is applied
+            setTimeout(() => {
+                themeOverlay.classList.remove('visible');
+            }, 600);
+        }, 400);
+    };
+
+    // Add change listeners to both toggles
+    desktopToggle.addEventListener('change', () => {
+        handleThemeToggle(desktopToggle.checked);
+    });
+
+    mobileToggle.addEventListener('change', () => {
+        handleThemeToggle(mobileToggle.checked);
     });
 
     // Initialize animated theme toggle

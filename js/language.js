@@ -224,16 +224,17 @@ function updatePageContent() {
         }
     });
 
-    // Update language switch text
-    const langSwitch = document.querySelector('.lang-switch');
-    if (langSwitch) {
-        langSwitch.textContent = translations[currentLanguage]['language'];
-    }
-
-    // Update minimal language switch code
-    const langCode = document.querySelector('.lang-code');
-    if (langCode) {
-        langCode.textContent = translations[currentLanguage]['lang_code'];
+    // Update language switch buttons
+    const langSwitches = document.querySelectorAll('.lang-switch');
+    if (langSwitches.length > 0) {
+        langSwitches.forEach(switchBtn => {
+            const langCode = switchBtn.querySelector('.lang-code');
+            if (langCode) {
+                langCode.textContent = translations[currentLanguage]['lang_code'];
+            } else {
+                switchBtn.textContent = translations[currentLanguage]['language'];
+            }
+        });
     }
 }
 

@@ -1,418 +1,381 @@
 /* Header and Navigation Styles */
 
+/* Basic Styling for Light/Dark Mode */
 header {
     position: fixed;
     z-index: 1000;
     width: 100%;
     top: 0;
     left: 0;
-    padding: 1.5rem 0;
-    background-color: rgba(255, 255, 255, 0.2);
-    backdrop-filter: blur(6px);
-    transition: var(--transition);
+    padding: 1rem 0;
+    background-color: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+    transition: all 0.3s ease;
 }
-
 
 body.dark-mode header {
-    background-color: rgba(18, 18, 18, 0.3);
+    background-color: rgba(18, 18, 18, 0.25);
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
 }
 
-nav {
+/* Container layout */
+header .container {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1.5rem;
     position: relative;
-    width: 100%;
 }
 
+/* RTL container layout - we actually want similar layout structure */
+body.rtl header .container {
+    flex-direction: row;
+}
+
+/* Logo styling */
 .logo {
-    font-size: 1.5rem;
+    font-size: 1.4rem;
     font-weight: 700;
     color: var(--text-color);
+    text-decoration: none;
+    letter-spacing: 0.5px;
+    transition: all 0.3s ease;
+    z-index: 1002;
 }
 
 body.dark-mode .logo {
     color: var(--text-dark);
 }
 
-.nav-links {
-    display: flex;
-    list-style: none;
-    position: absolute;
-    left: 50%;
-    transform: translateX(-50%);
-    display: flex;
-    justify-content: center;
-}
-
-.nav-links li {
-    margin-left: 2rem;
-}
-
-.nav-links a {
-    color: var(--text-color);
-    font-weight: 500;
-    position: relative;
-}
-
-body.dark-mode .nav-links a {
-    color: var(--text-dark);
-}
-
-.nav-links a:hover {
+.logo:hover {
     color: var(--primary-color);
 }
 
-.nav-links a::after {
+/* Desktop Navigation */
+.desktop-nav {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex: 1;
+}
+
+/* RTL Navigation */
+body.rtl .desktop-nav {
+    margin-left: 2rem;
+    margin-right: 0;
+}
+
+.desktop-nav ul {
+    display: flex;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.desktop-nav ul li {
+    margin-left: 2rem;
+}
+
+/* RTL Navigation Items */
+body.rtl .desktop-nav ul li {
+    margin-right: 2rem;
+    margin-left: 0;
+}
+
+body.rtl .desktop-nav ul {
+    flex-direction: row-reverse;
+}
+
+.desktop-nav a {
+    color: var(--text-color);
+    font-weight: 500;
+    text-decoration: none;
+    position: relative;
+    padding: 0.5rem 0;
+    transition: all 0.3s ease;
+}
+
+body.dark-mode .desktop-nav a {
+    color: var(--text-dark);
+}
+
+.desktop-nav a::after {
     content: '';
     position: absolute;
-    bottom: -5px;
+    bottom: -2px;
     left: 0;
     width: 0;
     height: 2px;
     background-color: var(--primary-color);
-    transition: var(--transition);
+    transition: width 0.3s ease;
 }
 
-.nav-links a:hover::after {
+.desktop-nav a:hover {
+    color: var(--primary-color);
+}
+
+.desktop-nav a:hover::after {
     width: 100%;
 }
 
-/* Right controls container */
-.right-controls {
+body.rtl .desktop-nav a::after {
+    left: auto;
+    right: 0;
+}
+
+/* Controls section (theme toggle & language switch) */
+.controls {
     display: flex;
     align-items: center;
     gap: 1rem;
-    position: relative;
     margin-left: auto;
 }
 
-.right-controls .lang-switch-container {
-    position: relative;
-    margin-left: 0.5rem;
-    padding-left: 0.5rem;
+/* RTL Controls */
+body.rtl .controls {
+    margin-right: 0;
+    margin-left: auto;
+    order: unset;
 }
 
-.right-controls .lang-switch-container:before {
-    content: '';
-    position: absolute;
-    left: 0;
-    top: 50%;
-    transform: translateY(-50%);
-    height: 12px;
-    width: 1px;
-    background-color: var(--text-light);
-    opacity: 0.6;
-}
-
-body.dark-mode .right-controls .lang-switch-container:before {
-    background-color: var(--text-dark-light);
-}
-
-/* Theme Toggle Switch */
+/* Theme Toggle */
 .theme-toggle {
-    display: flex;
-    align-items: center;
-}
-
-/* Toggle Switch Styles */
-.switch {
     position: relative;
-    overflow: hidden;
-    width: 3.75rem;
-    height: 2rem;
+    width: 52px;
+    height: 26px;
 }
 
-.switch input {
+.toggle-input {
+    opacity: 0;
+    width: 0;
+    height: 0;
     position: absolute;
+}
+
+.toggle-label {
+    position: absolute;
+    cursor: pointer;
     top: 0;
     left: 0;
-    z-index: 2;
-    opacity: 0;
-    cursor: pointer;
-    width: 100%;
-    height: 100%;
-    margin: 0;
-}
-
-.switch label {
-    cursor: pointer;
-}
-
-.background {
-    z-index: 1;
-    position: absolute;
-    width: 3.75rem;
-    height: 2rem;
-    border-radius: 1.25rem;
-    border: 0.125rem solid #202020;
-    background: linear-gradient(to right, #484848 0%, #202020 100%);
-    transition: all 0.3s;
-}
-
-.fill {
-    position: fixed;
-    top: 0;
     right: 0;
-    bottom: 2rem;
-    left: 0;
-    background: transparent;
-    transition: 0.75s all ease;
-    z-index: -1;
-    pointer-events: none;
-}
-
-.switch input:checked ~ .fill {
-    background: transparent;
-}
-
-.stars1,
-.stars2 {
-    position: absolute;
-    height: 0.2rem;
-    width: 0.2rem;
-    background: #FFFFFF;
-    border-radius: 50%;
-    transition: 0.3s all ease;
-}
-
-.stars1 {
-    top: 3px;
-    right: 11px;
-}
-
-.stars2 {
-    top: 20px;
-    right: 24px;
-}
-
-.stars1:after,
-.stars1:before,
-.stars2:after,
-.stars2:before {
-    position: absolute;
-    content: "";
-    display: block;
-    height: 0.125rem;
-    width: 0.125rem;
-    background: #FFFFFF;
-    border-radius: 50%;
-    transition: 0.2s all ease;
-}
-
-.stars1:after {
-    top: 4px;
-    right: 10px;
-}
-
-.stars1:before {
-    top: 9px;
-    right: -6px;
-}
-
-.stars2:after {
-    top: -4px;
-    right: -8px;
-}
-
-.stars2:before {
-    top: 3px;
-    right: -13px;
-}
-
-.sun-moon {
-    z-index: 2;
-    position: absolute;
-    left: 0;
-    display: inline-block;
-    height: 1.5rem;
-    width: 1.5rem;
-    margin: 0.25rem;
-    background: #FFFDF2;
-    border-radius: 50%;
-    transition: all 0.5s ease;
-
-    /* Default to Moon */
-    border: 0.125rem solid #DEE2C6;
-}
-
-.sun-moon .dots {
-    position: absolute;
-    top: 1.5px;
-    left: 11.5px;
-    height: 0.5rem;
-    width: 0.5rem;
-    background: #EFEEDB;
-    border: 0.125rem solid #DEE2C6;
-    border-radius: 50%;
-    transition: 0.4s all ease;
-}
-
-.sun-moon .dots:after,
-.sun-moon .dots:before {
-    position: absolute;
-    content: "";
-    display: block;
-    height: 0.125rem;
-    width: 0.125rem;
-    background: #EFEEDB;
-    border: 0.125rem solid #DEE2C6;
-    border-radius: 50%;
-    transition: 0.4s all ease;
-}
-
-.sun-moon .dots:after {
-    top: -2px;
-    left: -13px;
-}
-
-.sun-moon .dots:before {
-    top: 9px;
-    left: -5px;
-}
-
-/* Transition to Sun */
-.switch input:checked ~ .sun-moon {
-    left: calc(100% - 2rem);
-    background: #F5EC59;
-    border-color: #E7C65C;
-    transform: rotate(-25deg);
-}
-
-.switch input:checked ~ .sun-moon .dots,
-.switch input:checked ~ .sun-moon .dots:after,
-.switch input:checked ~ .sun-moon .dots:before {
-    background: #FFFFFF;
-    border-color: #FFFFFF;
-}
-
-.switch input:checked ~ .sun-moon .dots {
-    height: 0.75rem;
-    width: 0.75rem;
-    top: 0px;
-    left: -10px;
-    transform: rotate(25deg);
-}
-
-.switch input:checked ~ .sun-moon .dots:after {
-    height: 0.325rem;
-    width: 0.325rem;
-    top: 1px;
-    left: -6px;
-}
-
-.switch input:checked ~ .sun-moon .dots:before {
-    height: 0.2rem;
-    width: 0.2rem;
-    top: 3px;
-    left: 7px;
-}
-
-.switch input:checked ~ .background .stars1,
-.switch input:checked ~ .background .stars2 {
-    opacity: 0;
-    transform: translateY(1rem);
-}
-
-.switch input:checked ~ .background {
-    border: 0.125rem solid #78C1D5;
-    background: linear-gradient(to right, #78C1D5 0%, #BBE7F5 100%);
-}
-
-/* State-related styles */
-body.dark-mode .switch input {
-    /* Keep checked state in sync with dark mode */
-    pointer-events: auto;
-}
-
-body:not(.dark-mode) .switch input {
-    /* Keep checked state in sync with light mode */
-    pointer-events: auto;
-}
-
-/* Set the initial state of the toggle based on body class */
-body.dark-mode .toggle-switch {
-    checked: true;
-}
-
-/* Language Switch Styles */
-.lang-switch-container {
+    bottom: 0;
+    background-color: #2c3e50;
+    border-radius: 34px;
+    transition: 0.4s;
+    overflow: hidden;
     display: flex;
     align-items: center;
+    justify-content: space-between;
+    padding: 0 4px;
 }
 
-.minimal-lang-switch {
+body.dark-mode .toggle-label {
+    background-color: #4a4a5e;
+}
+
+.toggle-label:before {
+    position: absolute;
+    content: "";
+    height: 20px;
+    width: 20px;
+    left: 3px;
+    bottom: 3px;
+    background-color: white;
+    border-radius: 50%;
+    transition: 0.4s;
+    z-index: 2;
+}
+
+body.rtl .toggle-label:before {
+    left: auto;
+    right: 3px;
+}
+
+.toggle-input:checked + .toggle-label {
+    background-color: var(--primary-color);
+}
+
+.toggle-input:checked + .toggle-label:before {
+    transform: translateX(26px);
+}
+
+body.rtl .toggle-input:checked + .toggle-label:before {
+    transform: translateX(-26px);
+}
+
+.toggle-icon {
+    font-size: 14px;
+    z-index: 1;
+}
+
+.toggle-icon:first-child {
+    margin-right: auto;
+}
+
+body.rtl .toggle-icon:first-child {
+    margin-right: 0;
+    margin-left: auto;
+}
+
+.toggle-icon:last-child {
+    margin-left: auto;
+}
+
+body.rtl .toggle-icon:last-child {
+    margin-left: 0;
+    margin-right: auto;
+}
+
+/* Language Switch */
+.lang-switch {
     background: transparent;
     border: none;
-    color: var(--text-light);
-    padding: 0;
-    font-size: 0.8rem;
+    color: var(--text-color);
+    font-size: 0.9rem;
     font-weight: 600;
-    cursor: pointer;
-    transition: opacity 0.2s ease;
-    outline: none;
     letter-spacing: 0.5px;
     text-transform: uppercase;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    padding: 4px 8px;
+    border-radius: 4px;
+    border: 1px solid rgba(120, 120, 120, 0.2);
 }
 
-.minimal-lang-switch:hover {
-    opacity: 0.7;
+body.dark-mode .lang-switch {
+    color: var(--text-dark);
+    border-color: rgba(200, 200, 200, 0.2);
 }
 
-.minimal-lang-switch .lang-code {
-    position: relative;
+.lang-switch:hover {
+    background-color: rgba(120, 120, 120, 0.1);
 }
 
-.minimal-lang-switch .lang-code::after {
-    content: '';
-    position: absolute;
-    bottom: -3px;
-    left: 0;
-    width: 100%;
-    height: 1px;
-    background-color: var(--text-light);
-    transform: scaleX(0);
-    transition: transform 0.2s ease;
-    transform-origin: right;
+/* Maintain LTR text direction for language code in RTL mode */
+body.rtl .lang-switch .lang-code {
+    direction: ltr;
+    display: inline-block;
 }
 
-.minimal-lang-switch:hover .lang-code::after {
-    transform: scaleX(1);
-    transform-origin: left;
-}
-
-body.dark-mode .minimal-lang-switch {
-    color: var(--text-dark-light);
-}
-
-body.dark-mode .minimal-lang-switch .lang-code::after {
-    background-color: var(--text-dark-light);
-}
-
-/* Mobile Navigation */
+/* Hamburger Button - Mobile Only */
 .hamburger {
     display: none;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 24px;
+    height: 20px;
+    background: transparent;
+    border: none;
     cursor: pointer;
-    z-index: 1010;
-    position: relative;
+    padding: 0;
+    z-index: 1002; /* Above mobile nav */
 }
 
 .hamburger span {
     display: block;
-    width: 25px;
-    height: 3px;
+    width: 100%;
+    height: 2px;
     background-color: var(--text-color);
-    margin: 5px 0;
-    transition: var(--transition);
+    transition: all 0.3s ease;
 }
 
 body.dark-mode .hamburger span {
     background-color: var(--text-dark);
 }
 
-/* Mobile Navigation Styles */
+/* Mobile Navigation */
+.mobile-nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    background-color: rgba(255, 255, 255, 0.98);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    z-index: 1001;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    transform: translateX(100%);
+    transition: transform 0.4s ease;
+    visibility: hidden;
+}
+
+body.dark-mode .mobile-nav {
+    background-color: rgba(18, 18, 18, 0.98);
+}
+
+body.rtl .mobile-nav {
+    left: auto;
+    right: 0;
+    transform: translateX(-100%);
+}
+
+.mobile-nav.active {
+    transform: translateX(0);
+    visibility: visible;
+}
+
+body.rtl .mobile-nav.active {
+    transform: translateX(0);
+}
+
+.mobile-nav nav {
+    width: 100%;
+    text-align: center;
+}
+
+body.rtl .mobile-nav nav ul {
+    flex-direction: row-reverse;
+}
+
+.mobile-nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 2rem 0;
+}
+
+.mobile-nav li {
+    margin: 1.5rem 0;
+}
+
+.mobile-nav a {
+    color: var(--text-color);
+    font-size: 1.5rem;
+    font-weight: 500;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+body.dark-mode .mobile-nav a {
+    color: var(--text-dark);
+}
+
+.mobile-nav a:hover {
+    color: var(--primary-color);
+}
+
+.mobile-nav .controls {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.5rem;
+    margin-top: 2rem;
+}
+
+body.rtl .mobile-nav .controls {
+    flex-direction: row;
+}
+
+/* Hamburger Animation */
 .hamburger.active span:nth-child(1) {
-    transform: rotate(45deg) translate(5px, 5px);
+    transform: translateY(9px) rotate(45deg);
 }
 
 .hamburger.active span:nth-child(2) {
@@ -420,160 +383,58 @@ body.dark-mode .hamburger span {
 }
 
 .hamburger.active span:nth-child(3) {
-    transform: rotate(-45deg) translate(5px, -5px);
+    transform: translateY(-9px) rotate(-45deg);
 }
 
-.nav-links.active {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    position: fixed;
-    top: 0;
-    right: 0;
-    width: 100%;
-    height: 100vh;
-    background-color: rgba(255, 255, 255, 0.95);
-    backdrop-filter: blur(10px);
-    z-index: 1000;
-    padding-top: 80px;
-    animation: slideIn 0.3s ease-out forwards;
-}
-
-body.rtl .nav-links.active {
-    right: auto;
-    left: 0;
-    animation: slideInRTL 0.3s ease-out forwards;
-}
-
-body.dark-mode .nav-links.active {
-    background-color: rgba(18, 18, 18, 0.95);
-}
-
-.nav-links.active li {
-    margin: 15px 0;
-    opacity: 0;
-    transform: translateY(20px);
-    animation: fadeInUp 0.4s ease forwards;
-}
-
-.nav-links.active li:nth-child(1) {
-    animation-delay: 0.1s;
-}
-
-.nav-links.active li:nth-child(2) {
-    animation-delay: 0.2s;
-}
-
-.nav-links.active li:nth-child(3) {
-    animation-delay: 0.3s;
-}
-
-.nav-links.active li:nth-child(4) {
-    animation-delay: 0.4s;
-}
-
-.nav-links.active li:nth-child(5) {
-    animation-delay: 0.5s;
-}
-
-.nav-links.active a {
-    font-size: 1.3rem;
-    padding: 8px 16px;
-    display: block;
-    width: 100%;
-    text-align: center;
-}
-
-@keyframes slideIn {
-    from {
-        transform: translateX(100%);
+/* Responsive Styles */
+@media (max-width: 992px) {
+    .desktop-nav ul li {
+        margin-left: 1.5rem;
     }
-    to {
-        transform: translateX(0);
+
+    /* RTL support for desktop */
+    body.rtl .desktop-nav ul li {
+        margin-left: 0;
+        margin-right: 1.5rem;
     }
 }
 
-@keyframes slideInRTL {
-    from {
-        transform: translateX(-100%);
-    }
-    to {
-        transform: translateX(0);
-    }
-}
-
-@keyframes fadeInUp {
-    from {
-        opacity: 0;
-        transform: translateY(20px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-/* Responsive styles */
 @media (max-width: 768px) {
-    .nav-links {
-        position: static;
-        transform: none;
+    header {
+        padding: 0.8rem 0;
+    }
+
+    .desktop-nav {
+        display: none;
     }
 
     .hamburger {
-        display: block;
-    }
-
-    .right-controls {
-        gap: 0.75rem;
-        margin-left: 0; /* Reset margin for mobile layout */
-    }
-
-    .minimal-lang-switch {
-        font-size: 0.75rem;
-    }
-
-    /* Mobile layout order */
-    nav {
         display: flex;
-        justify-content: space-between;
+        z-index: 1010;
     }
 
     .logo {
-        order: 1;
+        font-size: 1.3rem;
     }
 
-    .right-controls {
-        order: 2;
-        /* Ensure controls group nicely on mobile */
-        justify-content: flex-end;
+    .controls {
+        display: none;
     }
 
-    .hamburger {
-        order: 3;
+    .mobile-nav .controls {
+        display: flex;
+        margin-top: 3rem;
+        justify-content: center;
     }
 
-    /* RTL mobile layout */
-    body.rtl nav {
-        flex-direction: row-reverse;
-    }
-
-    body.rtl .logo {
-        order: 3;
-    }
-
+    /* RTL Mobile Adjustments */
     body.rtl .hamburger {
-        order: 1;
+        margin-right: auto;
+        margin-left: 0;
     }
 
-    body.rtl .right-controls {
-        order: 2;
-        justify-content: flex-start;
-    }
-
-    /* Fix for nav-links in RTL */
-    body.rtl .nav-links.active {
-        left: 0;
-        transform: none;
+    /* Ensure mobile menu items are RTL */
+    body.rtl .mobile-nav nav ul {
+        flex-direction: row-reverse;
     }
 }
